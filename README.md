@@ -1,2 +1,2 @@
-# Projet C Template
-## Authors : 
+# Projet C 
+## Authors : Léo LAVAL & Lucas RIBEIRO
