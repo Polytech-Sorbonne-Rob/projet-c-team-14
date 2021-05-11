@@ -5,12 +5,22 @@
 #include "opencv2/imgproc/imgproc_c.h"
 #include "iostream"
 
+// Variables globales
+int lowH = 0;
+int highH = 8;
+
+int lowS = 150;
+int highS = 255;
+
+int lowV = 120;
+int highV = 255;
+
 //renvoie une image en noir et blanc avec le blanc corespondant à la couleur rouge
 IplImage* transformation(IplImage * image){
 	IplImage* imhsv = cvCreateImage( cvGetSize(image),8,3 );
 	cvCvtColor(image,imhsv,CV_BGR2HSV);
 	IplImage* noirblanc = cvCreateImage( cvGetSize(image),8,1 );
-	cvInRangeS(imhsv, cvScalar(0,150,55),cvScalar(5,255,255), noirblanc);
+	cvInRangeS(imhsv, cvScalar(lowH,lowS,lowV),cvScalar(highH,highS,highV), noirblanc);
 	cvReleaseImage(&imhsv);
 	return noirblanc;
 }
@@ -20,13 +30,23 @@ int main() {
     // open the first webcam plugged in the computer
     CvCapture* capture=cvCaptureFromCAM(-1);
     
-    
-    if(!capture)  //if no webcam detected or failed to capture anything
-    {              // capture a frame 
+ if(!capture)  //if no webcam detected or failed to capture anything
+    {              // capture a frame
     printf("exit\n");
         exit(0);
     }
 	printf("pas exit\n");
+
+    // TRACKBAR
+    cvNamedWindow("Zone de detection");
+
+    cvCreateTrackbar("Low H", "Zone de detection", &lowH, 255);
+    cvCreateTrackbar("High H", "Zone de detection", &highH, 255);
+    cvCreateTrackbar("Low S", "Zone de detection", &lowS, 255);
+    cvCreateTrackbar("High S", "Zone de detection", &highS, 255);
+    cvCreateTrackbar("Low V", "Zone de detection", &lowV, 255);
+    cvCreateTrackbar("High V", "Zone de detection", &highV, 255);
+
 	while (1){
 		IplImage* frame =cvQueryFrame( capture);
 		IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
