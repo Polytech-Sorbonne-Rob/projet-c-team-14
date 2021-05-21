@@ -1,57 +1,66 @@
-#define LED_PIN (13)
-#define MOTOR0_PIN (3)
-#define MOTOR1_PIN (5)
+#include <Servo.h> 
+
+String inputString = "";         // a string to hold incoming data
+boolean stringComplete = false;  // whether the string is complete
 
 
-#define CLOCKWISE (-1)
-#define ANTI_CLOCKWISE (1)
+Servo myservo1;  // create servo object to control a servo 
+Servo myservo2;                // a maximum of eight servo objects can be created 
+int pos1 = 0; 
+int pos2 = 90;    // variable to store the servo position 
+int idx = 1;
 
-#define UPWARD (-1)
-#define DOWNWARD (1)
+void setup() 
+{ 
+  // initialize serial:
+  Serial.begin(9600);
+  // reserve 200 bytes for the inputString:
+  inputString.reserve(200);
+
+  myservo1.attach(5);  // attaches the servo on pin 6 to the servo object 
+  myservo2.attach(6);
+} 
 
 
-void setup() {
-  Serial.begin(9600); // Enable Serial connection with a rate of 9600 bauds
-}
-
-
-void rotateMotor(int pin, int ms, int direction) {
-  const int out_anticlockwise = 235; // +4.8V
-  const int out_clockwise =  20; // -4.8V
-
-  if (direction == CLOCKWISE) {
-    analogWrite(pin, out_clockwise);
-  } else if (direction == ANTI_CLOCKWISE) {
-    analogWrite(pin, out_anticlockwise);
+void loop() 
+{ 
+  // print the string when a newline arrives:
+  if (stringComplete) {
+    String mytext = "";
+    mytext = mytext + "pos1:" + pos1 + " pos2:" + pos2;
+    myservo1.write(pos1);              // tell servo to go to position in variable 'pos1' 
+    myservo2.write(pos2);              // tell servo to go to position in variable 'pos2' 
+    delay(15);
+    // clear the string:
+    inputString = "";
+    stringComplete = false;
   }
-  
-  delay(ms);
-  analogWrite(pin, 0); // Stop movement
-}
+  //                       // waits 15ms for the servo to reach the position  
+} 
 
-void loop() {
 
-  while (Serial.available() > 0) {
-    int val0 = Serial.parseInt(SKIP_ALL);
-    int val1 = Serial.parseInt(SKIP_ALL);
-    
-    // Clamp value: prevents events in which motor would rotate for a long time
-    // if the entered value is too big
-    val0 = max(min(val0, 2000), -2000); 
-    val1 = max(min(val1, 2000), -2000);
-    
-    // Vertical rotation
-    if (val0 > 0) {
-      rotateMotor(MOTOR0_PIN, abs(val0), UPWARD);
-    } else if (val0 < 0) {
-      rotateMotor(MOTOR0_PIN, abs(val0), DOWNWARD);
+/*
+  SerialEvent occurs whenever a new data comes in the
+ hardware serial RX.  This routine is run between each
+ time loop() runs, so using delay inside loop can delay
+ response.  Multiple bytes of data may be available.
+ */
+void serialEvent() {
+  while (Serial.available()) {
+    // get the new byte:
+    char inChar = (char)Serial.read(); 
+    // add it to the inputString:
+    inputString += inChar;
+    // if the incoming character is a newline, set a flag
+    // so the main loop can do something about it:
+    if(inChar == ' '){
+      pos1=inputString.toInt();
+      inputString="";
     }
-
-    // Horizontal rotation
-    if (val1 > 0) {
-      rotateMotor(MOTOR1_PIN, abs(val1), CLOCKWISE);
-    } else if (val1 < 0) {
-      rotateMotor(MOTOR1_PIN, abs(val1), ANTI_CLOCKWISE);
-    }
+    if (inChar == '\n' ) {
+      pos2=inputString.toInt();
+      inputString="";
+      stringComplete = true;
+    } 
   }
 }

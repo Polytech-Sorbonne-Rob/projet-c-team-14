@@ -4,15 +4,21 @@
 #include "opencv2/videoio.hpp"
 #include "opencv2/imgproc/imgproc_c.h"
 #include "iostream"
+#include <unistd.h>
+
+#define MIDX 320
+#define MIDY 240
+
+#define Q1MAX 91
 
 // Variables globales
-int lowH = 0;
-int highH = 8;
+int lowH = 55;
+int highH = 77;
 
-int lowS = 150;
-int highS = 255;
+int lowS = 88;
+int highS = 201;
 
-int lowV = 120;
+int lowV = 69;
 int highV = 255;
 
 //renvoie une image en noir et blanc avec le blanc corespondant à la couleur rouge
@@ -27,9 +33,15 @@ IplImage* transformation(IplImage * image){
 
 
 int main() {
+
+  FILE *camera = fopen("/dev/ttyACM1", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
     // open the first webcam plugged in the computer
-    CvCapture* capture=cvCaptureFromCAM(-1);
-    
+  CvCapture* capture=cvCaptureFromCAM(-1);
+
+  int q1 = 45;
+  int q0 = 90;
+  fprintf(camera, "%d %d\n", q0, q1);
+
  if(!capture)  //if no webcam detected or failed to capture anything
     {              // capture a frame
     printf("exit\n");
@@ -50,59 +62,89 @@ int main() {
 	while (1){
 		IplImage* frame =cvQueryFrame( capture);
 		IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
-		
-		
+
+
 		image->origin =frame->origin;
 		cvCopy(frame,image,0);
-		
+
 		IplImage* img=transformation(image);
 		cvReleaseImage(&image);
-		
-		
+
+
 		CvMoments* centre_couleur= (CvMoments*)malloc(sizeof(CvMoments));
-		
+
 		cvMoments(img, centre_couleur, 1);
-		
+
 		//on va checher les coordonnées du centre
-		
+
 		double moment_1 = cvGetSpatialMoment(centre_couleur,1,0);
 		double moment_2 = cvGetSpatialMoment(centre_couleur,0,1);
-		
-		
+
 		double aire = cvGetCentralMoment(centre_couleur,0,0);
-		
+
 		static int posX=0;
 		static int posY=0;
-		
+
 		//int precX=posX;
 		//int precY=posY;
-		
+
 		posX=moment_1/aire;
 		posY=moment_2/aire;
-		
-		cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,100,100),-1);
-		
-		
-		
+
+		cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,0,255),-1);
+
+		cvFlip(frame, frame, 1);
+        cvFlip(img, img, 1);
+
 		cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
 		cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
-		
-		
-		
+
+        printf("X = %d  Y = %d\n", posX, posY);
+        if(posX>0 && posY>0){
+          /*if(posX > MIDX && posY > MIDY){
+            q0++;
+            q1<Q1MAX ? q1++ : q1;
+            fprintf(camera, "%d %d\n", q0, q1);
+          }
+          else if(posX < MIDX && posY < MIDY){
+            q0--;
+            q1<Q1MAX ? q1-- : q1;
+            fprintf(camera, "%d %d\n", q0, q1);
+          }
+          else if(posX > MIDX && posY < MIDY){
+            q0++;
+            q1<Q1MAX ? q1-- : q1;
+            fprintf(camera, "%d %d\n", q0, q1);
+          }
+          else if(posX < MIDX && posY > MIDY){
+            q0--;
+            q1<Q1MAX ? q1++ : q1;
+            fprintf(camera, "%d %d\n", q0, q1);
+            }*/
+          if(q1 < Q1MAX){
+            posX > MIDX ? q0++ : q0--;
+            posY > MIDY ? q1++ : q1--;
+          }else{
+            posX > MIDX ? q0-- : q0++;
+            posY > MIDY ? q1++ : q1--;
+          }
+          fprintf(camera, "%d %d\n", q0, q1);
+
+          fflush(stdout);
+        }
+
+
 		cvShowImage("Image", frame);
 		cvShowImage("GRIS", img);
-		
+
 		delete centre_couleur;
 		cvReleaseImage(&img);
 		if (cvWaitKey(10)!=-1){
 			cvDestroyWindow("GRIS");
 			cvDestroyWindow("Image");
 			cvReleaseCapture( &capture );
+            fclose(camera);
 			return 0;
 		}
-		
-		
-		
 	}
-    
 }
