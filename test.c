@@ -6,10 +6,8 @@
 #include "iostream"
 #include <unistd.h>
 
-#define MIDX 320
-#define MIDY 240
+#include "camera.h"
 
-#define Q1MAX 91
 
 // Variables globales
 int lowH = 55;
@@ -31,10 +29,26 @@ IplImage* transformation(IplImage * image){
 	return noirblanc;
 }
 
+/*
+void moveCamera(FILE * camera, int X, int Y, int *q0, int *q1){
+
+  if(X>0 && Y>0){
+    if(*q1 < Q1MAX){
+      X > MIDX ? *q0++ : *q0--;
+      Y > MIDY ? *q1++ : *q1--;
+    }else{
+      X > MIDX ? *q0-- : *q0++;
+      Y > MIDY ? *q1++ : *q1--;
+    }
+    fprintf(camera, "%d %d\n", *q0, *q1);
+
+    fflush(stdout);
+  }
+} */
 
 int main() {
 
-  FILE *camera = fopen("/dev/ttyACM1", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
+  FILE *camera = fopen("/dev/ttyACM0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
     // open the first webcam plugged in the computer
   CvCapture* capture=cvCaptureFromCAM(-1);
 
@@ -100,38 +114,19 @@ int main() {
 		cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
 
         printf("X = %d  Y = %d\n", posX, posY);
-        if(posX>0 && posY>0){
-          /*if(posX > MIDX && posY > MIDY){
-            q0++;
-            q1<Q1MAX ? q1++ : q1;
-            fprintf(camera, "%d %d\n", q0, q1);
-          }
-          else if(posX < MIDX && posY < MIDY){
-            q0--;
-            q1<Q1MAX ? q1-- : q1;
-            fprintf(camera, "%d %d\n", q0, q1);
-          }
-          else if(posX > MIDX && posY < MIDY){
-            q0++;
-            q1<Q1MAX ? q1-- : q1;
-            fprintf(camera, "%d %d\n", q0, q1);
-          }
-          else if(posX < MIDX && posY > MIDY){
-            q0--;
-            q1<Q1MAX ? q1++ : q1;
-            fprintf(camera, "%d %d\n", q0, q1);
-            }*/
-          if(q1 < Q1MAX){
-            posX > MIDX ? q0++ : q0--;
-            posY > MIDY ? q1++ : q1--;
-          }else{
-            posX > MIDX ? q0-- : q0++;
-            posY > MIDY ? q1++ : q1--;
-          }
-          fprintf(camera, "%d %d\n", q0, q1);
 
-          fflush(stdout);
-        }
+if(posX>0 && posY>0){
+    if(q1 < Q1MAX){
+      posX > MIDX ? q0++ : q0--;
+      posY > MIDY ? q1++ : q1--;
+    }else{
+      posX > MIDX ? q0-- : q0++;
+      posY > MIDY ? q1++ : q1--;
+    }
+    fprintf(camera, "%d %d\n", q0, q1);
+
+    fflush(stdout);
+  }
 
 
 		cvShowImage("Image", frame);
