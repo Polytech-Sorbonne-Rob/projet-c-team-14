@@ -29,117 +29,122 @@ IplImage* transformation(IplImage * image){
 	return noirblanc;
 }
 
-/*
-void moveCamera(FILE * camera, int X, int Y, int *q0, int *q1){
-
-  if(X>0 && Y>0){
-    if(*q1 < Q1MAX){
-      X > MIDX ? *q0++ : *q0--;
-      Y > MIDY ? *q1++ : *q1--;
-    }else{
-      X > MIDX ? *q0-- : *q0++;
-      Y > MIDY ? *q1++ : *q1--;
-    }
-    fprintf(camera, "%d %d\n", *q0, *q1);
-
-    fflush(stdout);
-  }
-} */
 
 int main() {
-
-  FILE *camera = fopen("/dev/ttyACM0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
-    // open the first webcam plugged in the computer
-  CvCapture* capture=cvCaptureFromCAM(-1);
-
-  int q1 = 45;
-  int q0 = 90;
-  fprintf(camera, "%d %d\n", q0, q1);
-
- if(!capture)  //if no webcam detected or failed to capture anything
-    {              // capture a frame
-    printf("exit\n");
-        exit(0);
-    }
-	printf("pas exit\n");
-
-    // TRACKBAR
-    cvNamedWindow("Zone de detection");
-
-    cvCreateTrackbar("Low H", "Zone de detection", &lowH, 255);
-    cvCreateTrackbar("High H", "Zone de detection", &highH, 255);
-    cvCreateTrackbar("Low S", "Zone de detection", &lowS, 255);
-    cvCreateTrackbar("High S", "Zone de detection", &highS, 255);
-    cvCreateTrackbar("Low V", "Zone de detection", &lowV, 255);
-    cvCreateTrackbar("High V", "Zone de detection", &highV, 255);
-
-	while (1){
-		IplImage* frame =cvQueryFrame( capture);
-		IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
-
-
-		image->origin =frame->origin;
-		cvCopy(frame,image,0);
-
-		IplImage* img=transformation(image);
-		cvReleaseImage(&image);
-
-
-		CvMoments* centre_couleur= (CvMoments*)malloc(sizeof(CvMoments));
-
-		cvMoments(img, centre_couleur, 1);
-
-		//on va checher les coordonnées du centre
-
-		double moment_1 = cvGetSpatialMoment(centre_couleur,1,0);
-		double moment_2 = cvGetSpatialMoment(centre_couleur,0,1);
-
-		double aire = cvGetCentralMoment(centre_couleur,0,0);
-
-		static int posX=0;
-		static int posY=0;
-
-		//int precX=posX;
-		//int precY=posY;
-
-		posX=moment_1/aire;
-		posY=moment_2/aire;
-
-		cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,0,255),-1);
-
-		cvFlip(frame, frame, 1);
-        cvFlip(img, img, 1);
-
-		cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
-		cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
-
-        printf("X = %d  Y = %d\n", posX, posY);
-
-if(posX>0 && posY>0){
-    if(q1 < Q1MAX){
-      posX > MIDX ? q0++ : q0--;
-      posY > MIDY ? q1++ : q1--;
-    }else{
-      posX > MIDX ? q0-- : q0++;
-      posY > MIDY ? q1++ : q1--;
-    }
-    fprintf(camera, "%d %d\n", q0, q1);
-
-    fflush(stdout);
+  system("stty 9600"); // met le terminal en 9600 baud
+  FILE *arduino = fopen("/dev/ttyACM0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
+  if(arduino == NULL){
+    perror("ARDUINO OFF");
+    exit(0);
   }
 
+  // open the first webcam plugged in the computer
+  CvCapture* capture=cvCaptureFromCAM(-1);
 
-		cvShowImage("Image", frame);
-		cvShowImage("GRIS", img);
+  if(!capture)  //if no webcam detected or failed to capture anything
+    {              // capture a frame
+      perror("CAMERA OFF");
+      exit(0);
+    }
 
-		delete centre_couleur;
-		cvReleaseImage(&img);
-		if (cvWaitKey(10)!=-1){
-			cvDestroyWindow("GRIS");
-			cvDestroyWindow("Image");
-			cvReleaseCapture( &capture );
-            fclose(camera);
-			return 0;
-		}
-	}
+
+  bool control_kb = true;
+
+  int q1 = 30;
+  int q0 = 90;
+  fprintf(arduino, "%d %d\n", q0, q1);
+
+  // TRACKBAR
+  cvNamedWindow("Zone de detection");
+
+  cvCreateTrackbar("Low H", "Zone de detection", &lowH, 255);
+  cvCreateTrackbar("High H", "Zone de detection", &highH, 255);
+  cvCreateTrackbar("Low S", "Zone de detection", &lowS, 255);
+  cvCreateTrackbar("High S", "Zone de detection", &highS, 255);
+  cvCreateTrackbar("Low V", "Zone de detection", &lowV, 255);
+  cvCreateTrackbar("High V", "Zone de detection", &highV, 255);
+
+
+  // BOUCLE CAPTURE
+  while (1){
+    IplImage* frame =cvQueryFrame( capture);
+    IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
+
+    image->origin =frame->origin;
+    cvCopy(frame,image,0);
+
+    IplImage* img=transformation(image);
+    cvReleaseImage(&image);
+
+
+    CvMoments* centre_couleur= (CvMoments*)malloc(sizeof(CvMoments));
+
+    cvMoments(img, centre_couleur, 1);
+
+    //on va checher les coordonnées du centre
+    static int posX=0;
+    static int posY=0;
+
+    if(!control_kb){
+      double moment_1 = cvGetSpatialMoment(centre_couleur,1,0);
+      double moment_2 = cvGetSpatialMoment(centre_couleur,0,1);
+
+      double aire = cvGetCentralMoment(centre_couleur,0,0);
+
+      posX=moment_1/aire;
+      posY=moment_2/aire;
+
+      cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,0,255),-1);
+    }
+    cvFlip(frame, frame, 1);
+    cvFlip(img, img, 1);
+
+    cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
+    cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
+
+    printf("X = %d  Y = %d\n", posX, posY);
+
+
+    // TRACKING
+
+    if(cvWaitKey(5) ==1048685)
+      control_kb = !control_kb;
+
+    // tracking manuel
+    if(control_kb){
+      int key = cvWaitKey(5);
+
+      //printf("%d", key);
+
+      if(key == 1048698) // haut: touche z
+        q1 += 3;
+      else if(key == 1048691) // bas: touche s
+        q1 -= 3;
+
+      if(key == 1048676) // droite: touche d
+        q0 += 3;
+      else if(key == 1048689) // gauche: touche q
+        q0 -= 3;
+
+      fprintf(arduino, "%d %d\n", q0, q1);
+
+      fflush(stdout);
+
+
+    }else //tracking auto
+      moveCamera(arduino, posX, posY, &q0, &q1);
+
+    cvShowImage("Image", frame);
+    cvShowImage("GRIS", img);
+
+    delete centre_couleur;
+    cvReleaseImage(&img);
+    if (cvWaitKey(5)==1048603){ // touche "echap"
+      cvDestroyWindow("GRIS");
+      cvDestroyWindow("Image");
+      cvReleaseCapture( &capture );
+      fclose(arduino);
+      return 0;
+    }
+  }
 }

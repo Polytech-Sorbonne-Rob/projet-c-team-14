@@ -8,6 +8,6 @@
 
 #define Q1MAX 91
 
-//void moveCamera(FILE* camera,int X, int Y, int *q0, int *q1);
+void moveCamera(FILE* camera,int X, int Y, int *q0, int *q1);
 
 #endif
