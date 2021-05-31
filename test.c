@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include "camera.h"
+#include "lecture.h"
 
 
 // Variables globales
@@ -18,6 +19,11 @@ int highS = 201;
 
 int lowV = 69;
 int highV = 255;
+
+static int posX=0;
+static int posY=0;
+
+
 
 //renvoie une image en noir et blanc avec le blanc corespondant à la couleur rouge
 IplImage* transformation(IplImage * image){
@@ -67,6 +73,7 @@ int main() {
 
   // BOUCLE CAPTURE
   while (1){
+    int key = cvWaitKey(10);
     IplImage* frame =cvQueryFrame( capture);
     IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
 
@@ -82,8 +89,6 @@ int main() {
     cvMoments(img, centre_couleur, 1);
 
     //on va checher les coordonnées du centre
-    static int posX=0;
-    static int posY=0;
 
     if(!control_kb){
       double moment_1 = cvGetSpatialMoment(centre_couleur,1,0);
@@ -105,14 +110,18 @@ int main() {
     printf("X = %d  Y = %d\n", posX, posY);
 
 
-    // TRACKING
+    if(key == 1048697) //touche y
+      moveYes(arduino);
 
-    if(cvWaitKey(5) ==1048685)
+    if(key == 1048686) //touche n
+      moveNo(arduino);
+
+    // TRACKING
+    if(key ==1048685) // touche m
       control_kb = !control_kb;
 
     // tracking manuel
     if(control_kb){
-      int key = cvWaitKey(5);
 
       //printf("%d", key);
 
@@ -125,6 +134,16 @@ int main() {
         q0 += 3;
       else if(key == 1048689) // gauche: touche q
         q0 -= 3;
+
+      if(q0 < 0)
+        q0 = 0;
+      else if(q0 > 180)
+        q0 = 180;
+
+      if(q1 < 0)
+        q1 = 0;
+      else if(q1 > 180)
+        q1 = 180;
 
       fprintf(arduino, "%d %d\n", q0, q1);
 
@@ -139,7 +158,7 @@ int main() {
 
     delete centre_couleur;
     cvReleaseImage(&img);
-    if (cvWaitKey(5)==1048603){ // touche "echap"
+    if (key==1048603){ // touche "echap"
       cvDestroyWindow("GRIS");
       cvDestroyWindow("Image");
       cvReleaseCapture( &capture );

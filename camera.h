@@ -5,6 +5,7 @@
 
 #define MIDX 320
 #define MIDY 240
+#define PREC 25
 
 #define Q1MAX 91
 

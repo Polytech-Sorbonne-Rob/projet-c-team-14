@@ -5,7 +5,7 @@ LIBSDIR = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_videoio -I/us
 LDFLAGS =
 
 # fichiers du projet
-SRC = test.c camera.c
+SRC = test.c camera.c lecture.c
 OBJ = $(SRC:.c=.o)
 EXEC = main
 
@@ -13,8 +13,9 @@ EXEC = main
 all : $(EXEC)
 
 # dépendance des .h
+lecture.o: lecture.h
 camera.o: camera.h
-main.o: camera.h
+main.o: camera.h lecture.h
 
 
 # règles de compilation
