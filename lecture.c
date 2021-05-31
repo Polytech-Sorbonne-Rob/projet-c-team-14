@@ -1,26 +1,6 @@
 #include "lecture.h"
 
-void moveYes(FILE * arduino){
-  for(int i = 0; i < 70; i++){
-    fprintf(arduino, "90 %d\n", i);
-    fflush(stdout);
-  }
-  for(int i = 70; i > 0; i--){
-    fprintf(arduino, "90 %d\n", i);
-    fflush(stdout);
-  }
-}
 
-void moveNo(FILE * arduino){
-  for(int i = 45; i < 135; i++){
-    fprintf(arduino, "%d 15\n", i);
-    fflush(stdout);
-  }
-  for(int i = 135; i > 45; i--){
-    fprintf(arduino, "%d 15\n", i);
-    fflush(stdout);
-  }
-}
 
 
 char * lecture2string(char* sortie){

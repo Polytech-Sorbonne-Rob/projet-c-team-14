@@ -1,11 +1,11 @@
 # options de compilation
 CC = g++
 CCFLAGS = -Wall -g
-LIBSDIR = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_videoio -I/usr/include/opencv2
+LIBSDIR = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_videoio -I/usr/include/opencv2 -lopencv_imgcodecs
 LDFLAGS =
 
 # fichiers du projet
-SRC = test.c camera.c lecture.c
+SRC = test.c camera.c lecture.c traitement.c
 OBJ = $(SRC:.c=.o)
 EXEC = main
 
@@ -13,6 +13,7 @@ EXEC = main
 all : $(EXEC)
 
 # dépendance des .h
+traitement.o: traitement.h
 lecture.o: lecture.h
 camera.o: camera.h
 main.o: camera.h lecture.h
@@ -28,4 +29,4 @@ $(EXEC) :$(OBJ)
 
 #règles suplémentaires
 clean :
-	rm -f *.o $(EXEC)
+	rm -f *.o $(EXEC) *.png *.txt

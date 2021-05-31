@@ -9,6 +9,9 @@
 
 #define Q1MAX 91
 
-void moveCamera(FILE* camera,int X, int Y, int *q0, int *q1);
+void moveCameraAuto(FILE* arduino,int X, int Y, int *q0, int *q1);
+void moveCameraMan(FILE* arduino, int key);
 
+void moveYes(FILE* arduino);
+void moveNo(FILE* arduino);
 #endif
