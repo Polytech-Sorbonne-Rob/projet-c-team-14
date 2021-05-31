@@ -23,17 +23,19 @@ void moveNo(FILE * arduino){
 }
 
 
-void lecture2string(char* sortie){
+char * lecture2string(char* sortie){
   system("tesseract ocr/capture.jpg ocr/texte --oem 1 --psm 7 -l foo+eng");
-  FILE * lecture=fopen("ocr/texte.txt","r");
+  FILE * lecture=fopen("ocr/output.txt","r");
   if(lecture == NULL){
-    perror("Lecture impossible");
+    perror("Lecture impossible fichier output");
     exit(0);
   }
   fgets(sortie,100,lecture);
   printf("%s", sortie);
   fclose(lecture);
+  return sortie;
 }
+
 
 
 void verif(char* gauche, char* droite){
@@ -61,8 +63,8 @@ int calcul(char *chaine){
 
 
 void analyse(char* chaine){
-  int caract_actu = 0;
-  bool egal_trouvé = false;
+  /*int caract_actu = 0;
+  bool egal_trouve = false;
 
   char gauche[3], droite[3];
 
@@ -74,5 +76,5 @@ void analyse(char* chaine){
 
 
   }while(caract_actu != '\0');
-
+*/
 }

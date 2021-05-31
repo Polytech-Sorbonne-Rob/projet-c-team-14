@@ -1,13 +1,21 @@
 #include "opencv2/opencv.hpp"
-#include "opencv2/core.hpp"
-#include "opencv2/highgui.hpp"
+//#include "opencv2/core.hpp"
+//#include "opencv2/highgui.hpp"
 #include "opencv2/videoio.hpp"
 #include "opencv2/imgproc/imgproc_c.h"
+#include "opencv2/imgproc/types_c.h"
+#include "opencv2/highgui/highgui_c.h"
+#include "opencv2/core/core_c.h"
+#include "opencv2/imgcodecs/imgcodecs_c.h"
 #include "iostream"
 #include <unistd.h>
+#include <string.h>
+#include <stdio.h>
+#include "camera.h"
 
 #include "camera.h"
 #include "lecture.h"
+#include <traitement.h>
 
 
 // Variables globales
@@ -55,7 +63,7 @@ int main() {
 
 
   bool control_kb = true;
-
+	int mode=1;
   int q1 = 30;
   int q0 = 90;
   fprintf(arduino, "%d %d\n", q0, q1);
@@ -76,88 +84,109 @@ int main() {
     int key = cvWaitKey(10);
     IplImage* frame =cvQueryFrame( capture);
     IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
+    
+    if(key == 1048694) //  touche v
+		mode=1;//TRACKING
+    if(key == 1048673) //  touche b
+		mode=2;//CALCUL
+    
+    switch(mode){
 
-    image->origin =frame->origin;
-    cvCopy(frame,image,0);
+		case(1) : {
+			image->origin =frame->origin;
+			cvCopy(frame,image,0);
 
-    IplImage* img=transformation(image);
-    cvReleaseImage(&image);
+			IplImage* img=transformation(image);
+			cvReleaseImage(&image);
 
 
-    CvMoments* centre_couleur= (CvMoments*)malloc(sizeof(CvMoments));
+			CvMoments* centre_couleur= (CvMoments*)malloc(sizeof(CvMoments));
 
-    cvMoments(img, centre_couleur, 1);
+			cvMoments(img, centre_couleur, 1);
 
-    //on va checher les coordonnées du centre
+			//on va checher les coordonnées du centre
 
-    if(!control_kb){
-      double moment_1 = cvGetSpatialMoment(centre_couleur,1,0);
-      double moment_2 = cvGetSpatialMoment(centre_couleur,0,1);
+			if(!control_kb){
+			  double moment_1 = cvGetSpatialMoment(centre_couleur,1,0);
+			  double moment_2 = cvGetSpatialMoment(centre_couleur,0,1);
 
-      double aire = cvGetCentralMoment(centre_couleur,0,0);
+			  double aire = cvGetCentralMoment(centre_couleur,0,0);
 
-      posX=moment_1/aire;
-      posY=moment_2/aire;
+			  posX=moment_1/aire;
+			  posY=moment_2/aire;
 
-      cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,0,255),-1);
+			  cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,0,255),-1);
+			}
+			cvFlip(frame, frame, 1);
+			cvFlip(img, img, 1);
+
+			cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
+			cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
+
+			printf("X = %d  Y = %d\n", posX, posY);
+
+
+			if(key == 1048697) //touche y
+			  moveYes(arduino);
+
+			if(key == 1048686) //touche n
+			  moveNo(arduino);
+
+			// TRACKING
+			if(key ==1048685) // touche m
+			  control_kb = !control_kb;
+
+			// tracking manuel
+			if(control_kb){
+
+			  //printf("%d", key);
+
+			  if(key == 1048698) // haut: touche z
+				q1 += 3;
+			  else if(key == 1048691) // bas: touche s
+				q1 -= 3;
+
+			  if(key == 1048676) // droite: touche d
+				q0 += 3;
+			  else if(key == 1048689) // gauche: touche q
+				q0 -= 3;
+
+			  if(q0 < 0)
+				q0 = 0;
+			  else if(q0 > 180)
+				q0 = 180;
+
+			  if(q1 < 0)
+				q1 = 0;
+			  else if(q1 > 180)
+				q1 = 180;
+
+			  fprintf(arduino, "%d %d\n", q0, q1);
+
+			  fflush(stdout);
+
+
+			}
+			
+			else //tracking auto
+			  moveCamera(arduino, posX, posY, &q0, &q1);
+
+			cvShowImage("Image", frame);
+			cvShowImage("GRIS", img);
+
+			delete centre_couleur;
+			cvReleaseImage(&img);
+			break;
+		}
+    	
+		case(2):{
+			
+			
+			break;
+		}
     }
-    cvFlip(frame, frame, 1);
-    cvFlip(img, img, 1);
-
-    cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
-    cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
-
-    printf("X = %d  Y = %d\n", posX, posY);
-
-
-    if(key == 1048697) //touche y
-      moveYes(arduino);
-
-    if(key == 1048686) //touche n
-      moveNo(arduino);
-
-    // TRACKING
-    if(key ==1048685) // touche m
-      control_kb = !control_kb;
-
-    // tracking manuel
-    if(control_kb){
-
-      //printf("%d", key);
-
-      if(key == 1048698) // haut: touche z
-        q1 += 3;
-      else if(key == 1048691) // bas: touche s
-        q1 -= 3;
-
-      if(key == 1048676) // droite: touche d
-        q0 += 3;
-      else if(key == 1048689) // gauche: touche q
-        q0 -= 3;
-
-      if(q0 < 0)
-        q0 = 0;
-      else if(q0 > 180)
-        q0 = 180;
-
-      if(q1 < 0)
-        q1 = 0;
-      else if(q1 > 180)
-        q1 = 180;
-
-      fprintf(arduino, "%d %d\n", q0, q1);
-
-      fflush(stdout);
-
-
-    }else //tracking auto
-      moveCamera(arduino, posX, posY, &q0, &q1);
-
-    cvShowImage("Image", frame);
-    cvShowImage("GRIS", img);
-
-    delete centre_couleur;
-    cvReleaseImage(&img);
+    	
+    	
     if (key==1048603){ // touche "echap"
       cvDestroyWindow("GRIS");
       cvDestroyWindow("Image");
