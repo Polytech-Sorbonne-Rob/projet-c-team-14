@@ -17,6 +17,7 @@
 #include "traitement.h"
 
 
+
 // Variables globales
 int lowH = 55;
 int highH = 77;
@@ -127,7 +128,9 @@ int main() {
 
 			printf("X = %d  Y = %d\n", posX, posY);
 
+
 		// forcer mouvement predef
+
 			if(key == 1048697) //touche y
 			  moveYes(arduino);
 
@@ -138,12 +141,14 @@ int main() {
 			if(key ==1048685) // touche m
 			  control_kb = !control_kb; // control clavier ou non
 
+
 		// tracking manuel
 			if(control_kb){
 				moveCameraMan(arduino, key);
 			}
 		//tracking auto
 			else 
+
 			  moveCameraAuto(arduino, posX, posY, &q0, &q1);
 
 			cvShowImage("Image", frame);
@@ -155,6 +160,7 @@ int main() {
 		}
 
 		case(2):{
+
 			image->origin =frame->origin;
 			cvCopy(frame,image,0);
 			deroule(image);
@@ -163,6 +169,7 @@ int main() {
 		}
     }
 	
+
 
     if (key==1048603){ // touche "echap"
       cvDestroyAllWindows();

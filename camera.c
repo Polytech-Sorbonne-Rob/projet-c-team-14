@@ -8,6 +8,19 @@
  * \brief Macro pour changer l'incrementation d'angle.
  */
 #define INCREM 1
+
+
+
+/*!
+ * \brief Permet au pan-tilt de mouvoir à partir des positions X et Y du centre d'une plage de couleur.
+ *Elle modifie directement les angles dans le main.
+ * \param[in] arduino Adresse des ports de l'arduino.
+ * \param[in] X Position X.
+ * \param[in] Y Position Y.
+ * \param[out] q0 Angle Pan du pan-tilt.
+ * \param[out] q1 Angle Tilt du pan-tilt.
+ */
+
 void moveCameraAuto(FILE * arduino, int X, int Y, int *q0, int *q1){
 
   if(X>=0 && Y>=0){
@@ -38,6 +51,7 @@ void moveCameraAuto(FILE * arduino, int X, int Y, int *q0, int *q1){
     fflush(stdout);
   }
 }
+
 
 
 void moveCameraMan(FILE* arduino, int key,int *q0,int *q1){

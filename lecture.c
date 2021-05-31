@@ -1,8 +1,6 @@
 #include "lecture.h"
 
 
-
-
 char * lecture2string(char* sortie){
   system("tesseract ocr/capture.jpg ocr/texte --oem 1 --psm 7 -l foo+eng");
   FILE * lecture=fopen("ocr/output.txt","r");
