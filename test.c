@@ -11,11 +11,10 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
-#include "camera.h"
 
 #include "camera.h"
 #include "lecture.h"
-#include <traitement.h>
+//#include <traitement.h>
 
 
 // Variables globales
@@ -125,7 +124,7 @@ int main() {
 
 			printf("X = %d  Y = %d\n", posX, posY);
 
-
+            // forcer mouvement predef
 			if(key == 1048697) //touche y
 			  moveYes(arduino);
 
@@ -134,42 +133,15 @@ int main() {
 
 			// TRACKING
 			if(key ==1048685) // touche m
-			  control_kb = !control_kb;
+			  control_kb = !control_kb; // control clavier ou non
 
-			// tracking manuel
+            // tracking manuel
 			if(control_kb){
-
-			  //printf("%d", key);
-
-			  if(key == 1048698) // haut: touche z
-				q1 += 3;
-			  else if(key == 1048691) // bas: touche s
-				q1 -= 3;
-
-			  if(key == 1048676) // droite: touche d
-				q0 += 3;
-			  else if(key == 1048689) // gauche: touche q
-				q0 -= 3;
-
-			  if(q0 < 0)
-				q0 = 0;
-			  else if(q0 > 180)
-				q0 = 180;
-
-			  if(q1 < 0)
-				q1 = 0;
-			  else if(q1 > 180)
-				q1 = 180;
-
-			  fprintf(arduino, "%d %d\n", q0, q1);
-
-			  fflush(stdout);
-
-
+              moveCameraMan(arduino, key);
 			}
-			
-			else //tracking auto
-			  moveCamera(arduino, posX, posY, &q0, &q1);
+            // tracking auto
+			else
+			  moveCameraAuto(arduino, posX, posY, &q0, &q1);
 
 			cvShowImage("Image", frame);
 			cvShowImage("GRIS", img);
@@ -178,15 +150,12 @@ int main() {
 			cvReleaseImage(&img);
 			break;
 		}
-    	
+
 		case(2):{
-			
-			
+
 			break;
 		}
     }
-    	
-    	
     if (key==1048603){ // touche "echap"
       cvDestroyWindow("GRIS");
       cvDestroyWindow("Image");
