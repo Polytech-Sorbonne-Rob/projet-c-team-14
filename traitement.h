@@ -11,6 +11,6 @@
 #include <stdio.h>
 IplImage * traitement(IplImage * image);
 void deroule(IplImage * image);
-
+void suprEspace(char *expr, char *res);
 
 #endif

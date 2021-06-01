@@ -45,7 +45,16 @@ IplImage* transformation(IplImage * image){
 
 
 int main() {
-  system("stty 9600"); // met le terminal en 9600 baud
+	char  test1[]="1+2x3+2=4";
+	char  test2[]="1+1=2";
+	char  test3[]="-1+6x48=48x6-1";
+	printf("test1\n");
+	analyse(test1);
+	printf("test2\n");
+	analyse(test2);
+	printf("test3\n");
+	analyse(test3);}
+  /*system("stty 9600"); // met le terminal en 9600 baud
   FILE *arduino = fopen("/dev/ttyUSB0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
   if(arduino == NULL){
     perror("ARDUINO OFF");
@@ -144,7 +153,7 @@ int main() {
 
 		// tracking manuel
 			if(control_kb){
-				moveCameraMan(arduino, key);
+				moveCameraMan(arduino, key, &q0, &q1);
 			}
 		//tracking auto
 			else 
@@ -178,4 +187,4 @@ int main() {
       return 0;
     }
   }
-}
+}*/

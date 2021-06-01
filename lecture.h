@@ -6,5 +6,6 @@
 
 
 char * lecture2string(char* sortie);
+void analyse(char* chaine);
 //int calcul(char *chaine);
 #endif
