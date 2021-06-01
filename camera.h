@@ -13,6 +13,7 @@ void moveCameraAuto(FILE* arduino,int X, int Y, int *q0, int *q1);
 void moveCameraMan(FILE* arduino, int key,int *q0,int *q1);
 
 
+
 void moveYes(FILE* arduino);
 void moveNo(FILE* arduino);
 #endif

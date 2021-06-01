@@ -1,6 +1,6 @@
 /*!
  * \file camera.c
- * \brief Fonctions permettant un mouvement du pan-tilt
+ * \brief Fonctions permettant un mouvement du pan-tilt.
  * \author Lucas RIBEIRO Léo LAVAL
  */
 #include "camera.h"
@@ -13,7 +13,7 @@
 
 /*!
  * \brief Permet au pan-tilt de mouvoir à partir des positions X et Y du centre d'une plage de couleur.
- *Elle modifie directement les angles dans le main.
+ Elle modifie directement les angles dans le main.
  * \param[in] arduino Adresse des ports de l'arduino.
  * \param[in] X Position X.
  * \param[in] Y Position Y.
@@ -52,7 +52,15 @@ void moveCameraAuto(FILE * arduino, int X, int Y, int *q0, int *q1){
   }
 }
 
-
+/*!
+ * \brief Permet au pan-tilt d'être mis en mouvement manuellement.
+ Elle modifie directement les angles dans le main.
+ Il suffit d'appuyer sur les touches Z Q S D pour mettre en mouvement le pan-tilt.
+ * \param[in] arduino Adresse des ports de l'arduino.
+ * \param[in] key Touche sur laquelle l'utilisateur appuie.
+ * \param[out] q0 Angle Pan du pan-tilt.
+ * \param[out] q1 Angle Tilt du pan-tilt.
+ */
 
 void moveCameraMan(FILE* arduino, int key,int *q0,int *q1){
   if(key == 1048698) // haut: touche z
@@ -80,6 +88,10 @@ void moveCameraMan(FILE* arduino, int key,int *q0,int *q1){
   fflush(stdout);
 }
 
+/*!
+ * \brief La caméra fait un mouvement de hochement de tête "oui".
+ * \param[in] arduino Adresse des ports de l'arduino.
+ */
 void moveYes(FILE * arduino){
   for(int i = 0; i < 70; i++){
     fprintf(arduino, "90 %d\n", i);
@@ -91,6 +103,10 @@ void moveYes(FILE * arduino){
   }
 }
 
+/*!
+ * \brief La caméra fait un mouvement de hochement de tête "non".
+ * \param[in] arduino Adresse des ports de l'arduino.
+ */
 void moveNo(FILE * arduino){
   for(int i = 45; i < 135; i++){
     fprintf(arduino, "%d 15\n", i);
