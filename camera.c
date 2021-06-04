@@ -1,7 +1,6 @@
 /*!
  * \file camera.c
  * \brief Fonctions permettant un mouvement du pan-tilt.
- * \author Lucas RIBEIRO Léo LAVAL
  */
 #include "camera.h"
 /*!

@@ -46,7 +46,7 @@ IplImage* transformation(IplImage * image){
 
 int main() {
 	system("stty 9600"); // met le terminal en 9600 baud
-  FILE *arduino = fopen("/dev/ttyUSB0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
+  FILE *arduino = fopen("/dev/ttyACM0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
   if(arduino == NULL){
     perror("ARDUINO OFF");
     exit(0);
@@ -71,11 +71,11 @@ int main() {
 
   // BOUCLE CAPTURE
   while (1){
-  
+
     int key = cvWaitKey(10);
-    IplImage* frame =cvQueryFrame( capture);
+    IplImage* frame =cvQueryFrame(capture);
     IplImage* image = cvCreateImage( cvGetSize(frame),8,3 );
-    
+
     if(key == 1048694) {//  touche v
 		mode=1;//TRACKING
 		cvDestroyAllWindows();
@@ -84,12 +84,13 @@ int main() {
 		mode=2;//CALCUL
 		cvDestroyAllWindows();
 	}
-    
+
     switch(mode){
 
 		case(1) : {
 			// TRACKBAR
-		  	cvNamedWindow("Zone de detection");
+          cvNamedWindow("Zone de detection", CV_WINDOW_FREERATIO);
+          cvMoveWindow("Zone de detection", 0, 600);
 		  	cvCreateTrackbar("Low H", "Zone de detection", &lowH, 255);
 			cvCreateTrackbar("High H", "Zone de detection", &highH, 255);
 			cvCreateTrackbar("Low S", "Zone de detection", &lowS, 255);
@@ -124,7 +125,9 @@ int main() {
 			cvFlip(img, img, 1);
 
 			cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
+            cvMoveWindow("Image", 0, 0);
 			cvNamedWindow("GRIS", CV_WINDOW_AUTOSIZE);
+            cvMoveWindow("GRIS", 750, 0);
 
 			printf("X = %d  Y = %d\n", posX, posY);
 
@@ -147,8 +150,7 @@ int main() {
 				moveCameraMan(arduino, key, &q0, &q1);
 			}
 		//tracking auto
-			else 
-
+			else
 			  moveCameraAuto(arduino, posX, posY, &q0, &q1);
 
 			cvShowImage("Image", frame);
@@ -160,16 +162,17 @@ int main() {
 		}
 
 		case(2):{
-		
+
 			moveCameraMan(arduino, key, &q0, &q1);
 			image->origin =frame->origin;
 			cvCopy(frame,image,0);
+            //cvFlip(image, image, 0);
 			deroule(image);
-			
+
 			break;
 		}
     }
-	
+
 
 
     if (key==1048603){ // touche "echap"

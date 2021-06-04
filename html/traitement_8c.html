@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet C: Référence du fichier traitement.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('traitement_8c.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier traitement.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fonctions permettant de traiter une chaîne de caractères, de binariser un image, et de faire tourner le logiciel tesseract.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;opencv2/imgproc/types_c.h&quot;</code><br />
+<code>#include &quot;traitement.h&quot;</code><br />
+<code>#include &quot;lecture.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac5495b569dba6c972d1c69998a8d79f2"><td class="memItemLeft" align="right" valign="top"><a id="ac5495b569dba6c972d1c69998a8d79f2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NOMFICHIER</b>&#160;&#160;&#160;&quot;output.txt&quot;</td></tr>
+<tr class="separator:ac5495b569dba6c972d1c69998a8d79f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0a2abffedbccc733dc391bf9148cbb04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_8c.html#a0a2abffedbccc733dc391bf9148cbb04">deroule</a> (IplImage *image)</td></tr>
+<tr class="memdesc:a0a2abffedbccc733dc391bf9148cbb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de lire un suite de caractère manuscrit grâce à la caméra. La caméra fait un signe oui si l'équation inscrite est correcte et un signe non si elle ne l'est pas.  <a href="#a0a2abffedbccc733dc391bf9148cbb04">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0a2abffedbccc733dc391bf9148cbb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719856b9b4c6e98628895724ea487b67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_8c.html#a719856b9b4c6e98628895724ea487b67">suprEspace</a> (char *Phrase, char *NewPhrase)</td></tr>
+<tr class="memdesc:a719856b9b4c6e98628895724ea487b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime les espaces d'une chaîne de caractères.  <a href="#a719856b9b4c6e98628895724ea487b67">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a719856b9b4c6e98628895724ea487b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb7cbbe6a1cc9cbed786d9afd9720d22"><td class="memItemLeft" align="right" valign="top">IplImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_8c.html#acb7cbbe6a1cc9cbed786d9afd9720d22">traitement</a> (IplImage *image)</td></tr>
+<tr class="memdesc:acb7cbbe6a1cc9cbed786d9afd9720d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne une image en une image binarisée en noir et blanc.  <a href="#acb7cbbe6a1cc9cbed786d9afd9720d22">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acb7cbbe6a1cc9cbed786d9afd9720d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fonctions permettant de traiter une chaîne de caractères, de binariser un image, et de faire tourner le logiciel tesseract. </p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a0a2abffedbccc733dc391bf9148cbb04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a2abffedbccc733dc391bf9148cbb04">&#9670;&nbsp;</a></span>deroule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void deroule </td>
+          <td>(</td>
+          <td class="paramtype">IplImage *&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de lire un suite de caractère manuscrit grâce à la caméra. La caméra fait un signe oui si l'équation inscrite est correcte et un signe non si elle ne l'est pas. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">image</td><td>Image prise par la camera. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a719856b9b4c6e98628895724ea487b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a719856b9b4c6e98628895724ea487b67">&#9670;&nbsp;</a></span>suprEspace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void suprEspace </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>Phrase</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>NewPhrase</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime les espaces d'une chaîne de caractères. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">Phrase</td><td>Chaîne avec espaces. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">NewPhrase</td><td>Chaine avec espaces supprimés. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acb7cbbe6a1cc9cbed786d9afd9720d22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb7cbbe6a1cc9cbed786d9afd9720d22">&#9670;&nbsp;</a></span>traitement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IplImage* traitement </td>
+          <td>(</td>
+          <td class="paramtype">IplImage *&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne une image en une image binarisée en noir et blanc. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">image</td><td>Image à binariser. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="traitement_8c.html">traitement.c</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
+</body>
+</html>
