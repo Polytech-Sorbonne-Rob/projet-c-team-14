@@ -1,5 +1,6 @@
 #include "opencv2/imgproc/types_c.h"
 #include "traitement.h"
+#include "lecture.h"
 #define NOMFICHIER "output.txt"
 
 //suprime les espaces d'une chaine de caractère
@@ -51,7 +52,7 @@ void deroule(IplImage * image){
 		suprEspace(acespace,sortie);
 		free(acespace);
   		
-		printf("la suite est :%s\nreprendre photo : a, continuer: z\n",sortie);
+		printf("la suite est :%s\nreprendre photo : z, continuer: a\n",sortie);
 		fclose(lecture);
 		int key;
 		do{
@@ -59,12 +60,10 @@ void deroule(IplImage * image){
 		}while(key==1048586 && (key==1048673 || key == 1048698));//touche enter
 		
 		if(key==1048673){// touche a
-			
-			deroule(image);
-		}
-		if(key == 1048698){ // touche z
+			analyse(sortie);
 			
 		}
+		
 		free(sortie);
 	}
 	cvReleaseImage(&gray);

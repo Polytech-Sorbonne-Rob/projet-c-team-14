@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define VAL_LIM_REMP 2147483647
+#define VAL_LIM_COMBLE 2147483646
 
-char * lecture2string(char* sortie);
 void analyse(char* chaine);
-//int calcul(char *chaine);
+
 #endif
