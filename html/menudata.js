@@ -1,9 +1,8 @@
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
-{text:"Related Pages",url:"pages.html"},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"},
-{text:"Globals",url:"globals.html",children:[
-{text:"All",url:"globals.html"},
-{text:"Functions",url:"globals_func.html"},
+{text:"Page principale",url:"index.html"},
+{text:"Fichiers",url:"files.html",children:[
+{text:"Liste des fichiers",url:"files.html"},
+{text:"Variables globale",url:"globals.html",children:[
+{text:"Tout",url:"globals.html"},
+{text:"Fonctions",url:"globals_func.html"},
 {text:"Macros",url:"globals_defs.html"}]}]}]}
