@@ -2,26 +2,29 @@ var indexSectionsWithContent =
 {
   0: "cimp",
   1: "c",
-  2: "m",
-  3: "i",
-  4: "p"
+  2: "c",
+  3: "m",
+  4: "i",
+  5: "p"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "functions",
-  3: "defines",
-  4: "pages"
+  1: "classes",
+  2: "files",
+  3: "functions",
+  4: "defines",
+  5: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "Tout",
-  1: "Fichiers",
-  2: "Fonctions",
-  3: "Macros",
-  4: "Pages"
+  1: "Structures de données",
+  2: "Fichiers",
+  3: "Fonctions",
+  4: "Macros",
+  5: "Pages"
 };
 

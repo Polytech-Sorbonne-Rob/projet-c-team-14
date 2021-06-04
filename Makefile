@@ -16,7 +16,7 @@ all : $(EXEC)
 traitement.o: traitement.h
 lecture.o: lecture.h
 camera.o: camera.h
-main.o: camera.h lecture.h
+main.o: camera.h lecture.h traitement.h
 
 
 # règles de compilation
