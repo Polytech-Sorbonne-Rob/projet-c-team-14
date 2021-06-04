@@ -1,27 +1,29 @@
 #include "lecture.h"
 
 
-/*
-fonction permettant de transformer une chaine de caractère en équation et de la résoudre
-la chaine de caractère doit contenir des entiers et un signe '='. 
-Elle peut également contenir les symbole +,-,x
+/*!
+	* \brief Fonction permettant de transformer une chaine de caractère en équation et de la résoudre
+	la chaine de caractère doit contenir des entiers et un signe '='. 
+	Elle peut également contenir les symbole +,-,x
 
-le principe de fonctionnement est le suivant:
-on crée deux listes pour chaque expression de part et d'autre du signe égal soit 4 listes en tout
-l'une contiendra les nombres de l'expression et l'autre les symboles des additionneurs
-On comble les liste par la valeur VAL_LIM_COMBLE
+	le principe de fonctionnement est le suivant:
+	on crée deux listes pour chaque expression de part et d'autre du signe égal soit 4 listes en tout
+	l'une contiendra les nombres de l'expression et l'autre les symboles des additionneurs
+	On comble les liste par la valeur VAL_LIM_COMBLE
 
-on commence par cherche les signes 'x' pour la priorité des calculs
-on prends l'indice du signe x dans le deuxième tableau que l'on nomme "i", puis dans on multiplie les nombres d'indice i et i+1 du premier tableau
-on remplace alors le nombre d'indice i par le résultat obtenu et l'indice i+1 par une valeur limite (la plus grande valeur négative possible)
-pour le prochain calcul il suffit donc de décrémenter l'indice i ou d'incrémenter l'indice 'i+1' tant que l'on lit cette valeur limite 
+	on commence par cherche les signes 'x' pour la priorité des calculs
+	on prends l'indice du signe x dans le deuxième tableau que l'on nomme "i", puis dans on multiplie les nombres d'indice i et i+1 du premier tableau
+	on remplace alors le nombre d'indice i par le résultat obtenu et l'indice i+1 par une valeur limite (la plus grande valeur négative possible)
+	pour le prochain calcul il suffit donc de décrémenter l'indice i ou d'incrémenter l'indice 'i+1' tant que l'on lit cette valeur limite 
 
-ainsi 3*4+1*5
-donne : [3,4,1,5] et [x,+,x]
-on fait 3*4 : [12,-val limite,1,5]
-on fait 1*5 [12,-val limite,5,-val limite]
-on fait val limite+5-> on dcréente l'indice i -> on fait 12+5 : [17,val limite, val limite,val limite]
-notre résultat se trouve donc toujours dans la première case du tableau
+	ainsi 3*4+1*5
+	donne : [3,4,1,5] et [x,+,x]
+	on fait 3*4 : [12,-val limite,1,5]
+	on fait 1*5 [12,-val limite,5,-val limite]
+	on fait val limite+5-> on dcréente l'indice i -> on fait 12+5 : [17,val limite, val limite,val limite]
+	notre résultat se trouve donc toujours dans la première case du tableau
+	
+	* \param[in] chaine chaine de caractère à traiter. Doit contenir un "=".
 */
 void analyse(char* chaine){
 	long nombre=0;
@@ -48,7 +50,7 @@ void analyse(char* chaine){
 	//lorsque l'on attelong le =
 		if (chaine[i]=='='){
 		//on complète le tableau de gauche
-			//printf("=\n");
+			//DEBUG printf("=\n");
 			if(leftright==0){
 				listenbG[nb++]=nombre;
 				nombre=0;
@@ -69,7 +71,7 @@ void analyse(char* chaine){
 			switch(leftright){
 				case(0):{
 					listeaddG[add++]=chaine[i];
-					//DEBUGprintf("nombredans chaine  %d\n",nombre);
+					//DEBUG printf("nombredans chaine  %d\n",nombre);
 					listenbG[nb++]=nombre;
 					nombre=0;
 					
