@@ -19,7 +19,7 @@ Dans un premier temps, assurez-vous d'avoir la bibliothèque [OpenCV](https://do
 /usr/include/opencv2
 ```
 
-Afin d'utiliser le pan-tilt, il faut téléverser le [programme arduino](../code_arduino/) sur la carte qui se situe dans le dossier code_arduino.
+Afin d'utiliser le pan-tilt, il faut téléverser le [programme arduino](./code_arduino/) sur la carte qui se situe dans le dossier code_arduino.
 
 
 Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du projet libre. 
