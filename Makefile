@@ -28,5 +28,8 @@ $(EXEC) :$(OBJ)
 	$(CC) -g -o $@ $^ $(LIBSDIR) $(LDFLAGS)
 
 #règles suplémentaires
+doxy :
+	doxygen Doxyfile
+
 clean :
 	rm -f *.o $(EXEC) *.png *.txt
