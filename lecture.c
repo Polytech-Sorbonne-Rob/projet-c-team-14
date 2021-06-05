@@ -74,8 +74,8 @@ void analyse(char* chaine){
 				case(0):{
 					listeaddG[add++]=chaine[i];
 					//DEBUG 
-					printf("nombredans chaine  %d\n",listeaddG[add-1]);
-					printf("nombredans chaine  %d\n",nombre);
+					//printf("nombredans chaine  %ld\n",listeaddG[add-1]);
+					//printf("nombredans chaine  %ld\n",nombre);
 					listenbG[nb++]=nombre;
 					nombre=0;
 
@@ -99,8 +99,16 @@ void analyse(char* chaine){
 		}
 	i++;
 	}
+	
+	
+	if(leftright==0){
+		printf("erreur : pas de signe '=' dans l'équation");
+		exit(0);
+	}
+	
+	
 	//DEBUG
-	printf("liste nbG : ");
+	/*printf("liste nbG : ");
 	for (long e=0;e<10;e++){
 			printf("%ld ",listenbG[e]);
 		}
@@ -120,7 +128,7 @@ printf("liste addD : ");
 			printf("%ld ",listeaddD[e]);
 		}
 	printf("\n");
-
+*/
 
 	listenbD[nb++]=nombre;
 
@@ -153,7 +161,7 @@ printf("liste addD : ");
 			long b=i+1;
 			while (b<0) b++;
 			//DEBUG
-			printf("b= %ld on multiplie %ld et %ld\n",b,listenbD[a],listenbD[b]);
+			//printf("b= %ld on multiplie %ld et %ld\n",b,listenbD[a],listenbD[b]);
 			listenbD[a]=listenbD[a]*listenbD[b];
 			listenbD[b]=-VAL_LIM_REMP;
 
@@ -202,7 +210,7 @@ printf("liste addD : ");
 			}
 			long b=i+1;
 			while (listenbD[b]==-VAL_LIM_REMP) b++;
-			printf("b= %ld on additionne %ld et %ld\n",b,listenbD[a],listenbD[b]);
+			//printf("b= %ld on additionne %ld et %ld\n",b,listenbD[a],listenbD[b]);
 			listenbD[a]=listenbD[a]+listenbD[b];
 			listenbD[b]=-VAL_LIM_REMP;
 
@@ -214,7 +222,7 @@ printf("liste addD : ");
 			}
 			long b=i+1;
 			while (listenbD[b]==-VAL_LIM_REMP) b++;
-			printf("b= %ld on soustrait %ld et %ld\n",b,listenbD[a],listenbD[b]);
+			//printf("b= %ld on soustrait %ld et %ld\n",b,listenbD[a],listenbD[b]);
 			listenbD[a]=listenbD[a]-listenbD[b];
 			listenbD[b]=-VAL_LIM_REMP;
 
