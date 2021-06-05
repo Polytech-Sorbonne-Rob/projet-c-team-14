@@ -69,10 +69,10 @@ Afin d'accéder au projet libre, il faut:
 Tout comme le projet imposé la caméra peut être déplacée avec les touches "zqsd"
 
 Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au centre. Pour utiliser le programme, il faut:
-- écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise)
+- écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise) de la forme `expr1=expr2`
 - Placer l'équation entière dans le rectangle central 
 - Appuyer sur la touche "enter"
-- vérifier sur la console si l'équation est celle attendue: si oui appuyer sur `a` si non appuyer sur `e`
+- vérifier sur la console si l'équation est celle attendue: si oui appuyer sur `a` si non appuyer sur `e` pour recommencer à partir de la deuxième étape
 
 La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon
 
