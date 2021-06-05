@@ -28,11 +28,10 @@ Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du pr
 sudo apt-get install tesseract-ocr
 ```
 
-Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier foo.traineddata dans le chemin:
+Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier foo.traineddata, qui se trouve dans le dossier extra, dans le chemin:
 ```
 /usr/share/tesseract-ocr/4.00/tessdata/
 ```
-
 
 Pour lancer le programme, il suffit de taper les commandes suivantes:
 ```
