@@ -1,3 +1,7 @@
+/*!
+ * \file main.c
+ */
+
 #include "opencv2/opencv.hpp"
 //#include "opencv2/core.hpp"
 //#include "opencv2/highgui.hpp"
@@ -32,8 +36,12 @@ static int posX=0;
 static int posY=0;
 
 
+/*!
+ * \brief renvoie une image en noir et blanc avec le blanc corespondant à la couleur rouge
+ * \param[in] image image à modifier
+ */
 
-//renvoie une image en noir et blanc avec le blanc corespondant à la couleur rouge
+//
 IplImage* transformation(IplImage * image){
 	IplImage* imhsv = cvCreateImage( cvGetSize(image),8,3 );
 	cvCvtColor(image,imhsv,CV_BGR2HSV);
