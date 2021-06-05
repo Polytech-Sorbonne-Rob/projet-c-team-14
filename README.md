@@ -55,13 +55,27 @@ Cette seconde possibilité possède aussi une trackbar qui permet à l'utilisate
 
 Afin d'accéder au projet imposé, il faut:
 - lancer le programme
-- appuyer sur la touche `b`
+- appuyer sur la touche `v`
 - puis appuyer sur la touche `m` pour intervertir entre le mode manuel et le mode tracking.
 
 Afin de quitter le programme, il est nécessaire d'appuyer sur la touche `echap` du clavier.
 
 ## Projet libre
+Le projet libre consiste à déterminer si une équation présentée devant la caméra est juste ou fausse
 
+Afin d'accéder au projet libre, il faut:
+- lancer le programme
+- appuyer sur la touche `b`
+
+Tout comme le projet imposé la caméra peut être déplacée avec les touches "zqsd"
+
+Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au centre. Pour utiliser le programme, il faut:
+- écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise)
+- Placer l'équation entière dans le rectangle central 
+- Appuyer sur la touche "enter"
+- vérifier sur la console si l'équation est celle attendue: si oui appuyer sur `a` si non appuyer sur `e`
+
+La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon
 
 
 ### Auteurs : Léo LAVAL & Lucas RIBEIRO

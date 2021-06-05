@@ -53,10 +53,10 @@ void deroule(IplImage * image){
 		printf("la suite est :%s\nreprendre photo : z, continuer: a\n",sortie);
 		fclose(lecture);
 		int key;
-		//touche touche a ou z enfoncée
+		//touche touche a ou e enfoncée
 		do{
 			key=cvWaitKey(5);
-		}while(key!=1048673);
+		}while(key!=1048673 || key!=1048678);
 
 		if(key==1048673){// touche a
 			analyse(sortie);
