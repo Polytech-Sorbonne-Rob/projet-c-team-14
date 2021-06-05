@@ -47,7 +47,7 @@ Aucun paramètre d'entrée n'est nécessaire.
 Le projet imposé consiste à réaliser le tracking d'une couleur avec l'utilisation d'une caméra pan-tilt et d'une carte arduino.
 
 Ce dernier autorise deux possibilités: 
-- la première consiste à mouvoir la caméra en utilisant les touches "zqsd" tel des touches directionnelles.
+- la première consiste à mouvoir la caméra en utilisant les touches `zqsd` tel des touches directionnelles.
 - la seconde est le tracking du vert avec la caméra.
 
 Cette seconde possibilité possède aussi une trackbar qui permet à l'utilisateur de régler la plage de couleurs souhaitée de manière très précise.
@@ -55,30 +55,30 @@ Cette seconde possibilité possède aussi une trackbar qui permet à l'utilisate
 Afin d'accéder au projet imposé, il faut:
 - lancer le programme
 - appuyer sur la touche `v`
-- puis appuyer sur la touche `m` pour intervertir entre le mode manuel et le mode tracking.
+- puis appuyer sur la touche `m` pour intervertir entre le mode manuel et le mode tracking
 
 Afin de quitter le programme, il est nécessaire d'appuyer sur la touche `echap` du clavier.
 
 ## Projet libre
-Le projet libre consiste à déterminer si une équation présentée devant la caméra est juste ou fausse
+Le projet libre consiste à déterminer si une équation présentée devant la caméra est juste ou fausse.
 
 Afin d'accéder au projet libre, il faut:
 - lancer le programme
 - appuyer sur la touche `b`
 
-Tout comme le projet imposé la caméra peut être déplacée avec les touches "zqsd"
+Tout comme le projet imposé la caméra peut être déplacée avec les touches `zqsd`.
 
 Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au centre. Pour utiliser le programme, il faut:
 - écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise) de la forme `expr1=expr2`
-- Placer l'équation entière dans le rectangle central 
-- Appuyer sur la touche "enter"
+- placer l'équation entière dans le rectangle central 
+- appuyer sur la touche "enter"
 - vérifier sur la console si l'équation est celle attendue: si oui appuyer sur `a` si non appuyer sur `e` pour recommencer à partir de la deuxième étape
 
 La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon.
 
 Il est aussi possible de forcer ce mouvement de tête en appuyant sur les touches:
-* 'y' pour oui
-* 'n' pour non
+* `y` pour oui
+* `n` pour non
 
 
 ### Remerciements
