@@ -19,7 +19,7 @@
             <div class="accueil">
                 <h1>Projet C</h1>
                 <hr/>
-                <p>Projet OpenCV d'analyse d'images</p>
+                <p>Traitement d'images avec OpenCV</p>
             </div>
         </header>
 
@@ -30,7 +30,7 @@
                     <h2>Projets</h2>
 
                     <h3>Projet imposé : Caméra suivant un objet coloré</h3>
-                    <p>La première partie de notre projet s'est axée sur le suivi d'un objet en fonction de sa couleur. Pour cela nous avons dû apprendre à utiliser OpenCV, une bibliothèque en c et en c++ permettant le traitement d'image.
+                    <p>La première partie de notre projet s'est axée sur le suivi d'un objet en fonction de sa couleur. Pour cela nous avons dû apprendre à utiliser OpenCV, une bibliothèque en C et en C++ permettant le traitement d'image.
 
                     </p>
 
@@ -43,11 +43,11 @@
 
                     <p>PPour notre projet libre nous avons eu comme idée de créer un programme qui pourrait lire une équation que nous auriont écrit sur une ardoise. Pour savoir si elle est juste au fausse, la caméra devra faire un mouvement de "oui" ou de "non" pour nous l'indiquer.</p>
 
-                    <p>Afin de reconnaitre l'écriture sur une image nous avons utilisé Tesseract, un logiciel de reconnaissance optique de caractères. Malheureusement nous avons vite remarqué que ce logiciel ne pourrait pas reconnaitre l'écriture manuscrite. Il nous a donc fallut lui apprendre en utilisant du deep-learning. Pour cela nous avons pris beaucoup de photo de notre écriture que nous avons éditées afin que le logiciel puisse les reconnaitre. Nous avons ensuite créé des fichiers textes avec le "contenu" des images et nous avons lancé l'apprentissage. Nous avons utilisé leptonica pour cet apprentissage. Le logiciel nous a alors produit un fichier foo.traineddata que nous avons implémenté dans tesseract. </p>
+                    <p>Afin de reconnaitre l'écriture sur une image nous avons utilisé Tesseract, un logiciel de reconnaissance optique de caractères. Malheureusement nous avons vite remarqué que ce logiciel ne pourrait pas reconnaitre l'écriture manuscrite. Il nous a donc fallut lui apprendre en utilisant du deep-learning. Pour cela nous avons pris beaucoup de photo de notre écriture que nous avons éditées afin que le logiciel puisse les reconnaitre. Nous avons ensuite créé des fichiers textes avec le "contenu" des images et nous avons lancé l'apprentissage. Nous avons utilisé Leptonica pour cet apprentissage. Le logiciel nous a alors produit un fichier foo.traineddata que nous avons implémenté dans Tesseract. </p>
                     
                     
-                    <p>Voici le lien de <a href="https://www.youtube.com/watch?v=JPDeiGc2an8&t=401s" target="_blank">la vidéo suivie pour entrainer tesseract</a>. </p>
-                    <p>Cette étape a été très longue et nous avons eu peur de manquer de temps. Dans le cas où l'entrainement n'aurait pas fonctionné pas du premier coup nous aurions dû utiliser une imprimante pour écrire nos équations sur un ordinateur et donc utiliser la reconnaissance de base de tesseract. C'était un point que je souhaitais à tout prix éviter car je trouvais peu d'intéret à imprimer une équation pour essayer de la résoudre.</p>
+                    <p>Voici le lien de <a href="https://www.youtube.com/watch?v=JPDeiGc2an8&t=401s" target="_blank">la vidéo suivie pour entrainer Tesseract</a>. </p>
+                    <p>Cette étape a été très longue et nous avons eu peur de manquer de temps. Dans le cas où l'entrainement n'aurait pas fonctionné pas du premier coup nous aurions dû utiliser une imprimante pour écrire nos équations sur un ordinateur et donc utiliser la reconnaissance de base de Tesseract. C'était un point que je souhaitais à tout prix éviter car je trouvais peu d'intéret à imprimer une équation pour essayer de la résoudre.</p>
                    
                     <p> La seconde difficulté de notre programme réside dans la traduction d'une chaîne de caractères en équation. Cette étape semble simple mais elle ne l'est pas du tout. Je suis particulièrement fier de la fonction que j'ai créée. Elle se base sur un fonctionnement détaillé dans la documentation. Pour arriver à ce résultat je suis passé par plusieurs étapes de réflexion : 
                     <br>	- J'ai d'abord songer à calculer directement caractère par caractère ce qui est impossible pour les priorités de calcul.
