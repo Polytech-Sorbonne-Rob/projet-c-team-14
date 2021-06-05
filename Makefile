@@ -5,7 +5,7 @@ LIBSDIR = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_videoio -I/us
 LDFLAGS =
 
 # fichiers du projet
-SRC = test.c camera.c lecture.c traitement.c
+SRC = main.c camera.c lecture.c traitement.c
 OBJ = $(SRC:.c=.o)
 EXEC = main
 
