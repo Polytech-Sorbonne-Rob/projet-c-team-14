@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
-IplImage * traitement(IplImage * image);
+IplImage * traitement(IplImage * image, int blockSize, int constante);
 void deroule(IplImage * image, FILE* arduino);
 void suprEspace(char *expr, char *res);
 

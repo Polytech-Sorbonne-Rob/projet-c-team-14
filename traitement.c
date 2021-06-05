@@ -11,6 +11,7 @@
 
 
 
+static int blockSize = 10, constante = 13;
 
 /*!
  * \brief Permet de lire un suite de caractère manuscrit grâce à la caméra.
@@ -19,11 +20,14 @@
  */
 void deroule(IplImage * image, FILE * arduino){
 	//on créer une fenêtre avec un rectangle dedans
-	IplImage * gray=traitement(image);
+  int blockSizeFixed = 2*blockSize+3;
+  IplImage * gray=traitement(image,blockSizeFixed,constante);
 	cvNamedWindow("calcul", CV_WINDOW_AUTOSIZE);
 
 	cvRectangle(gray,cvPoint(80,100),cvPoint(600,300),cvScalar(0,255,255),1,1,0);
 	cvShowImage("calcul", gray);
+    cvCreateTrackbar("BlockSize", "calcul", &blockSize, 50);
+    cvCreateTrackbar("Constant", "calcul", &constante, 50);
 
 	//on réduit la région d'intéret de l'image pour la rogner
 	cvSetImageROI(gray,cvRect(80,100,520,200));
@@ -93,12 +97,14 @@ void suprEspace(char *Phrase, char *NewPhrase){
 /*!
  * \brief Retourne une image en une image binarisée en noir et blanc.
  * \param[in] image Image à binariser.
+ * \param[in] blockSize Paramètre pour régler l'épaisseur des contours.
+ * \param[in] constante Paramètre pour régler le bruit de l'image.
  */
-IplImage * traitement(IplImage * image){
+IplImage * traitement(IplImage * image, int blockSize, int constante){
 	IplImage* imhsv = cvCreateImage( cvGetSize(image),8,1 );
 	cvCvtColor(image,imhsv,CV_BGR2GRAY);
 	IplImage* noirblanc = cvCreateImage( cvGetSize(image),8,1 );
-	cvAdaptiveThreshold(imhsv,noirblanc,255,CV_ADAPTIVE_THRESH_GAUSSIAN_C,CV_THRESH_BINARY,21,13);
+	cvAdaptiveThreshold(imhsv,noirblanc,255,CV_ADAPTIVE_THRESH_GAUSSIAN_C,CV_THRESH_BINARY,blockSize,constante);
 	cvReleaseImage(&imhsv);
 	return noirblanc;
 

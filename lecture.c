@@ -56,7 +56,7 @@ void analyse(char* chaine, FILE* arduino){
 	}
 
 	i=0;
-	while(chaine[i]!='\0'){
+	while(chaine[i]!='\0' && chaine[i]!='\n'){
 	//lorsque l'on attelong le =
 		if (chaine[i]=='='){
 		//on complète le tableau de gauche
@@ -137,7 +137,6 @@ printf("liste addD : ");
 	printf("\n");
 */
 
-	
 
 
 	// boucle des priorités (fois)
