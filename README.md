@@ -78,7 +78,7 @@ La caméra fera alors un hochement de tête si l'équation est juste et un signe
 
 
 ### Remerciements
-Nous tenons particulièrement à remercier M. Saint-Bauzel et M. Maurice pour leur accompagnement tout au long de ce projet.
+Nous tenons particulièrement à remercier **M. Saint-Bauzel** et **M. Maurice** pour leur accompagnement tout au long de ce projet.
 
 Ainsi que les Gits suivant qui nous ont permis d'obtenir le css et le javascript de la documentation:
 * [jothepro](https://github.com/jothepro/doxygen-awesome-css) 
