@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+     <head>
+         <meta charset="utf-8">
+         <title>Compte rendu Lucas</title>
+         <link rel="stylesheet" type="text/css" href="ressources/css/style.css">
+         <link rel="icon" type="image/png" href="ressources/img/logo.png" />
+     </head>
+
+     <body>
+
+        <div class="background">
+            <img src="ressources/img/fond.jpeg"/>
+        </div>
+
+
+        <header>
+            <div class="accueil">
+                <h1>Projet C</h1>
+                <hr/>
+                <p>Projet OpenCV d'analyse d'images</p>
+            </div>
+        </header>
+
+     	<div class="Projet_c">
+
+            <div class="ligne">
+                <div class="texte avecpaddingtoutletour">
+                    <h2>Projets</h2>
+
+                    <h3>Projet imposé : Caméra suivant un objet coloré</h3>
+                    <p>La première partie de notre projet s'est axée sur le suivi d'un objet en fonction de sa couleur. Pour cela nous avons dû apprendre à utiliser OpenCV, une bibliothèque en c et en c++ permettant le traitement d'image.
+
+                    </p>
+
+                    <p>La principale difficulté que nous avons rencontrée a été de trouver toute la documentation d'OpenCV qui nous était alors inconnue. Il m'a été difficile d'assimiler le fonctionnement de la bibliothèque, cette dernière utilisant des classes différentes (pour capturer une image). La majorité des vidéos explicitant bien cette bibliothèque sont en python, mais ce dernier ne nécessite pas de déclarer ses variables au préalable. C'est donc à tâtons que l'assimilation de cette bibliothèque s'est faite. Nous avons aussi rencontré des difficultés pour actionner les moteurs de la caméra à l'aide de l'arduino. Malgré ces nombreux soucis, la première partie du projet a été réalisée dans les temps du planning qui nous avait été fourni, et non sans effort. </p>
+                    
+                    <p>Le projet imposé pourrait encore être améliorer, par exemple en implémentant le choix de couleurs prédéfinies en plus de la trackbar déjà présente, qui est plus complexe a utilisé. Je suis tout de même très satisfait du résultat obtenu. Notre programme est réactif, intuitif à utiliser. </p>
+
+                    <h3>Projet libre : reconnaissance et résolution d'équation</h3>
+
+                    <p>Pour notre projet libre nous avons eu comme idée de créer un programme qui pourrait lire une équation que nous auriont écrit sur une ardoise. Pour savoir si elle est juste au fausse, la caméra devra faire un mouvement de "oui" ou de "non" pour nous l'indiquer.</p>
+
+                    <p>Afin de reconnaître l'écriture sur une image nous avons utilisé Tesseract, un logiciel de reconnaissance optique de caractères. Malheureusement nous avons vite remarqué que ce logiciel ne pourrait pas reconnaitre l'écriture manuscrite, dans son utilisation standard. Il nous a donc fallut lui apprendre en utilisant du deep-learning. Pour celà nous avons pris beaucoup d'image de notre écriture que nous avons édité afin que le logiciel puisse les reconnaître. Nous avons ensuite créer des fichiers textes avec le "contenu" des images et nous avons lancé l'apprentissage. Nous avons utilisé leptonica pour cet aprentissage. Le logiciel nous a alors produit un fichier foo.traineddata que nous avons implémenté dans tesseract.</p>
+                    <p>Voici le lien de  <a href="https://www.youtube.com/watch?v=JPDeiGc2an8&t=401s" target="_blank">la vidéo suivie pour entrainer tesseract</a>.</p>
+                    <p>Cette étape à été très longue et nous avons eu peur de manquer de temps. Dans le cas où l'entrainement n'aurait pas fonctionné du premier coup nous aurions du utiliser une imprimante pour écrire nos équations sur un ordinateur et donc utiliser la reconnaissance de base de tesseract. Ce qui aurait été dommage, car nous n'aurions pas pu visualiser l'expérience de machine learning permise par Tesseract.</p>
+                    
+                    <p> La seconde difficulté de notre programme réside dans la traduction d'une chaîne de caractères en équation. Cette étape semble simple mais, elle ne l'est pas du tout. Je suis fier d'avoir trouvé le logiciel nous permettant de réaliser notre projet libre. 
+                    </p>
+
+		    		<p>J'ai pu créer la documentation avec Doxygen. Il m'a fallu suivre un <a href="https://franckh.developpez.com/tutoriels/outils/doxygen/" target="_blank">tutoriel</a> pour comprendre son fonctionnement, et la manière d'écrire dans les fichiers '.c'. En ce qui concerne l'implémentation du css, ainsi que d'un javascript, une simple recherche au sein de Doxywizard m'a suffit. Le fichier css a été trouvé sur Github puis modifié par mes soins, j'ai également modifié le css fourni par Doxygen afin de personnaliser les couleurs. A travers cette documentation, j'ai pu acquérir des connaissances en html, et en css, qui pourront m'être utile par la suite pour réécrire des documentations si nécéssaires ou tout simplement écrire les pages d'un site web.
+                    </p>
+
+
+                    <h3>Conclusion</h3>
+                    
+                    <p>En conclusion, ce projet a été très instructif. Il m'a permis de découvrir le traitement d'image à travers un programme écrit en C. J'ai aussi pu découvrir des prémices du machine learning à travers l'utilisation de Tesseract. De plus, j'ai été faire des recherches sur le fonctionnement du logiciel "Glade/GTK" mais ce dernier m'a donné du fil à retordre pour pouvoir le combiner avec notre programme déjà fini. Il n'a donc pas été implémenté au sein de notre programme, nous avons décidé de nous contenter d'utiliser les possibilités plus restreintes d'OpenCV, tel que la trackbar et l'affichage des vidéos traitées ou non. Cependant, une piste reste inexploré, et consiste en l'utilisation d'un thread afin de lancer en parallèle l'interface graphique et notre projet.
+                    </p>
+
+
+                    <p> Malgré une charge de travail élevé due à la totale découverte de tous les outils et au temps relativement court que nous avions, je suis heureux du résultat obtenu. Cela prouve que nous avons réussir à comprendre les forces et les faiblesses de chacun au cours de l'année scolaire et que nous avons su nous répartir efficacement et équitablement le travail. Notre binôme est en symbiose, nous sommmes complémentaires par nos acquis précédents et nous n'hésitons pas à nous entraider en cas de difficulté. </p>
+					
+					<p>Lucas RIBEIRO, ROB3</p>
+
+   
+
+                </div>
+            </div>
+        </div>
+
+     </body>
+
+</html>
