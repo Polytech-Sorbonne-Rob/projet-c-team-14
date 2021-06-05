@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <h2>Préparation</h2>
 <p>Dans un premier temps, assurez-vous d'avoir la bibliothèque <a href="https://docs.opencv.org/master/">OpenCV</a> qui suit ce chemin: </p><div class="fragment"><div class="line">/usr/include/opencv2</div></div><!-- fragment --><p>Afin d'utiliser le pan-tilt, il faut téléverser le <a href="./code_arduino/">programme arduino</a> sur la carte qui se situe dans le dossier code_arduino.</p>
 <p>Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du projet libre.</p>
-<div class="fragment"><div class="line">sudo apt-get install tesseract-ocr</div></div><!-- fragment --><p>Pour lancer le programme, il suffit de taper les commandes suivantes: </p><div class="fragment"><div class="line">make</div><div class="line"></div><div class="line">./main </div></div><!-- fragment --><p>Aucun paramètre d'entrée n'est nécessaire.</p>
+<div class="fragment"><div class="line">sudo apt-get install tesseract-ocr</div></div><!-- fragment --><p>Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier foo.traineddata, qui se trouve dans le dossier extra, dans le chemin: </p><div class="fragment"><div class="line">/usr/share/tesseract-ocr/4.00/tessdata/</div></div><!-- fragment --><p>Pour lancer le programme, il suffit de taper les commandes suivantes: </p><div class="fragment"><div class="line">make</div><div class="line"></div><div class="line">./main </div></div><!-- fragment --><p>Aucun paramètre d'entrée n'est nécessaire.</p>
 <h2>Projet imposé</h2>
 <p>Le projet imposé consiste à réaliser le tracking d'une couleur avec l'utilisation d'une caméra pan-tilt et d'une carte arduino.</p>
 <p>Ce dernier autorise deux possibilités:</p><ul>
@@ -105,11 +105,24 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>Cette seconde possibilité possède aussi une trackbar qui permet à l'utilisateur de régler la plage de couleurs souhaitée de manière très précise.</p>
 <p>Afin d'accéder au projet imposé, il faut:</p><ul>
 <li>lancer le programme</li>
-<li>appuyer sur la touche <code>b</code></li>
+<li>appuyer sur la touche <code>v</code></li>
 <li>puis appuyer sur la touche <code>m</code> pour intervertir entre le mode manuel et le mode tracking.</li>
 </ul>
 <p>Afin de quitter le programme, il est nécessaire d'appuyer sur la touche <code>echap</code> du clavier.</p>
 <h2>Projet libre</h2>
+<p>Le projet libre consiste à déterminer si une équation présentée devant la caméra est juste ou fausse</p>
+<p>Afin d'accéder au projet libre, il faut:</p><ul>
+<li>lancer le programme</li>
+<li>appuyer sur la touche <code>b</code></li>
+</ul>
+<p>Tout comme le projet imposé la caméra peut être déplacée avec les touches "zqsd"</p>
+<p>Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au centre. Pour utiliser le programme, il faut:</p><ul>
+<li>écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise) de la forme <code>expr1=expr2</code></li>
+<li>Placer l'équation entière dans le rectangle central</li>
+<li>Appuyer sur la touche "enter"</li>
+<li>vérifier sur la console si l'équation est celle attendue: si oui appuyer sur <code>a</code> si non appuyer sur <code>e</code> pour recommencer à partir de la deuxième étape</li>
+</ul>
+<p>La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon</p>
 <h3>Auteurs : Léo LAVAL &amp; Lucas RIBEIRO</h3>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
