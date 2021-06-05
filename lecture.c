@@ -1,42 +1,50 @@
 #include "lecture.h"
+#include "camera.h"
 /*!
  * \file lecture.c
  */
 
 /*!
- * \brief Fonction permettant de transformer une chaine de caractère en équation et de la résoudre
+ * \brief Fonction permettant de transformer une chaine de caractère en équation et de la résoudre;
  la chaine de caractère doit contenir des entiers et un signe '='.
  Elle peut également contenir les symbole +,-,x
 
  Le principe de fonctionnement est le suivant:
- On crée deux listes pour chaque expression de part et d'autre du signe égal soit 4 listes en tout
- l'une contiendra les nombres de l'expression et l'autre les symboles des additionneurs
+ On crée deux listes pour chaque expression de part et d'autre du signe égal soit 4 listes en tout,
+ l'une contiendra les nombres de l'expression et l'autre les symboles des additionneurs.
  On comble les liste par la valeur VAL_LIM_COMBLE
 
- on commence par cherche les signes 'x' pour la priorité des calculs
- on prends l'indice du signe x dans le deuxième tableau que l'on nomme "i", puis dans on multiplie les nombres d'indice i et i+1 du premier tableau
- on remplace alors le nombre d'indice i par le résultat obtenu et l'indice i+1 par une valeur limite (la plus grande valeur négative possible)
- pour le prochain calcul il suffit donc de décrémenter l'indice i ou d'incrémenter l'indice 'i+1' tant que l'on lit cette valeur limite
+ On commence par cherche les signes 'x' pour la priorité des calculs
+ On prends l'indice du signe x dans le deuxième tableau que l'on nomme "i", puis on multiplie les nombres d'indice i et i+1 du premier tableau.
+ On remplace alors le nombre d'indice i par le résultat obtenu et l'indice i+1 par une valeur limite (la plus grande valeur négative possible).
+ Pour le prochain calcul, il suffit donc de décrémenter l'indice i ou d'incrémenter l'indice 'i+1' tant que l'on lit cette valeur limite.
 
- ainsi 3*4+1*5
- donne : [3,4,1,5] et [x,+,x]
- on fait 3*4 : [12,-val limite,1,5]
- on fait 1*5 [12,-val limite,5,-val limite]
- on fait val limite+5-> on dcréente l'indice i -> on fait 12+5 : [17,val limite, val limite,val limite]
- notre résultat se trouve donc toujours dans la première case du tableau
+ Ainsi 3*4+1*5 :
+ Donne : [3,4,1,5] et [x,+,x]
+ On fait 3*4 : [12,-val limite,1,5]
+ On fait 1*5 [12,-val limite,5,-val limite]
+ On fait val limite+5-> on décrémente l'indice i -> on fait 12+5 : [17,val limite, val limite,val limite].
+ Notre résultat se trouve donc toujours dans la première case du tableau.
 
- * \param[in] chaine chaine de caractère à traiter. Doit contenir un "=".
+ * \param[in] chaine Chaîne de caractères à traiter. Doit contenir un "=".
+ * \param arduino Lien vers la carte arduino.
  */
-void analyse(char* chaine){
+void analyse(char* chaine, FILE* arduino){
 	long nombre=0;
 	int leftright=0;
-	long listenbG[100];
-	long listenbD[100];
+	long* listenbG;
+	long* listenbD;
+
+    listenbG = (long*)malloc(sizeof(long)*100);
+    listenbD = (long*)malloc(sizeof(long)*100);
 	int nb=0;
 
 	//liste des additioneurs à droite
-	long listeaddG[100];
-	long listeaddD[100];
+	long* listeaddG;
+	long* listeaddD;
+
+    listeaddG = (long*)malloc(sizeof(long)*100);
+    listeaddD = (long*)malloc(sizeof(long)*100);
 	int add=0;
 
 	int i;
@@ -73,7 +81,7 @@ void analyse(char* chaine){
 			switch(leftright){
 				case(0):{
 					listeaddG[add++]=chaine[i];
-					//DEBUG 
+					//DEBUG
 					//printf("nombredans chaine  %ld\n",listeaddG[add-1]);
 					//printf("nombredans chaine  %ld\n",nombre);
 					listenbG[nb++]=nombre;
@@ -91,11 +99,11 @@ void analyse(char* chaine){
 		}
 		//on augmente le chiffre à droite du nombre
 		else {
-			//printf("chaine[i]%ld\n",chaine[i]);
+			printf("chaine[i]%d\n",chaine[i]);
 			nombre*=10;
-			//printf("nombre1 %ld\n",nombre);
+			printf("nombre1 %ld\n",nombre);
 			nombre+=chaine[i]-48;
-			//printf("nombre2 %ld\n",nombre);
+			printf("nombre2 %ld\n",nombre);
 		}
 	i++;
 	}
@@ -232,9 +240,16 @@ printf("liste addD : ");
 
 	if (listenbD[0]==listenbG[0]){
 		printf("oui! résultat : %ld\n",listenbD[0]);
+        moveYes(arduino);
 	}
 	else {
 		printf("non...%ld et %ld\n",listenbG[0],listenbD[0]);
+        moveNo(arduino);
 	}
+
+    free(listeaddD);
+    free(listeaddG);
+    free(listenbD);
+    free(listenbG);
 
 }

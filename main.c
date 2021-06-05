@@ -1,6 +1,9 @@
 /*!
  * \file main.c
+ * \brief Les variables sont utilisés pour régler la couleur (en HSV). Ici les paramètres correspondent à une plage de couleurs vertes.
+ * La fonction utilise ces variables globales afin de traiter l'image en noir et blanc, et afficher en blanc uniquement la plage de couleurs correspondante.
  */
+
 
 #include "opencv2/opencv.hpp"
 //#include "opencv2/core.hpp"
@@ -23,6 +26,7 @@
 
 
 // Variables globales
+
 int lowH = 55;
 int highH = 77;
 
@@ -37,11 +41,10 @@ static int posY=0;
 
 
 /*!
- * \brief renvoie une image en noir et blanc avec le blanc corespondant à la couleur rouge
+ * \brief Renvoie une image en noir et blanc avec le blanc corespondant à la couleur verte.
  * \param[in] image image à modifier
  */
 
-//
 IplImage* transformation(IplImage * image){
 	IplImage* imhsv = cvCreateImage( cvGetSize(image),8,3 );
 	cvCvtColor(image,imhsv,CV_BGR2HSV);
@@ -71,7 +74,7 @@ int main() {
 
 
   bool control_kb = true;
-	int mode=2;
+  int mode=2;
   int q1 = 30;
   int q0 = 90;
   fprintf(arduino, "%d %d\n", q0, q1);
@@ -175,7 +178,7 @@ int main() {
 			image->origin =frame->origin;
 			cvCopy(frame,image,0);
             //cvFlip(image, image, 0);
-			deroule(image);
+			deroule(image, arduino);
 
 			break;
 		}

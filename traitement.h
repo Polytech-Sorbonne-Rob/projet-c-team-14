@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdio.h>
 IplImage * traitement(IplImage * image);
-void deroule(IplImage * image);
+void deroule(IplImage * image, FILE* arduino);
 void suprEspace(char *expr, char *res);
 
 #endif

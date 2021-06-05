@@ -17,7 +17,7 @@
  * La caméra fait un signe oui si l'équation inscrite est correcte et un signe non si elle ne l'est pas.
  * \param[in] image Image prise par la camera.
  */
-void deroule(IplImage * image){
+void deroule(IplImage * image, FILE * arduino){
 	//on créer une fenêtre avec un rectangle dedans
 	IplImage * gray=traitement(image);
 	cvNamedWindow("calcul", CV_WINDOW_AUTOSIZE);
@@ -50,16 +50,19 @@ void deroule(IplImage * image){
 		free(acespace);
 
   		//affichage de l'equation pour une eventuelle prise d'une autre photo
-		printf("la suite est :%s\nreprendre photo : z, continuer: a\n",sortie);
+		printf("la suite est :%s\nreprendre photo : e, continuer: a\n",sortie);
 		fclose(lecture);
 		int key;
 		//touche touche a ou e enfoncée
 		do{
-			key=cvWaitKey(5);
-		}while(key!=1048673 || key!=1048678);
+          printf("ok\n");
+			key=cvWaitKey(0);
+            printf("ou\n");
+		}while((key!=1048673) && (key!=1048677));
 
 		if(key==1048673){// touche a
-			analyse(sortie);
+          printf("Analyse...\n");
+          analyse(sortie, arduino);
 
 		}
 
