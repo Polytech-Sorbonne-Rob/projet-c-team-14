@@ -92,13 +92,15 @@ void moveCameraMan(FILE* arduino, int key,int *q0,int *q1){
  * \param[in] arduino Adresse des ports de l'arduino.
  */
 void moveYes(FILE * arduino){
-  for(int i = 0; i < 70; i++){
-    fprintf(arduino, "90 %d\n", i);
-    fflush(stdout);
-  }
-  for(int i = 70; i > 0; i--){
-    fprintf(arduino, "90 %d\n", i);
-    fflush(stdout);
+  for(int j =0; j<3; j++){
+    for(int i = 0; i < 70; i++){
+      fprintf(arduino, "90 %d\n", i);
+      fflush(stdout);
+    }
+    for(int i = 70; i > 0; i--){
+      fprintf(arduino, "90 %d\n", i);
+      fflush(stdout);
+    }
   }
 }
 
@@ -107,12 +109,14 @@ void moveYes(FILE * arduino){
  * \param[in] arduino Adresse des ports de l'arduino.
  */
 void moveNo(FILE * arduino){
-  for(int i = 45; i < 135; i++){
-    fprintf(arduino, "%d 15\n", i);
-    fflush(stdout);
-  }
-  for(int i = 135; i > 45; i--){
-    fprintf(arduino, "%d 15\n", i);
-    fflush(stdout);
+  for(int j = 0; j<3;j++){
+    for(int i = 45; i < 135; i++){
+      fprintf(arduino, "%d 15\n", i);
+      fflush(stdout);
+    }
+    for(int i = 135; i > 45; i--){
+      fprintf(arduino, "%d 15\n", i);
+      fflush(stdout);
+    }
   }
 }

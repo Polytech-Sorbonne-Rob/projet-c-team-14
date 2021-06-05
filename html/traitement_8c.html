@@ -102,9 +102,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a0a2abffedbccc733dc391bf9148cbb04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_8c.html#a0a2abffedbccc733dc391bf9148cbb04">deroule</a> (IplImage *image)</td></tr>
-<tr class="memdesc:a0a2abffedbccc733dc391bf9148cbb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de lire un suite de caractère manuscrit grâce à la caméra. La caméra fait un signe oui si l'équation inscrite est correcte et un signe non si elle ne l'est pas.  <a href="#a0a2abffedbccc733dc391bf9148cbb04">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a0a2abffedbccc733dc391bf9148cbb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dcdf2da06261ceba9e2a2f1430a8e55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_8c.html#a4dcdf2da06261ceba9e2a2f1430a8e55">deroule</a> (IplImage *image, FILE *arduino)</td></tr>
+<tr class="memdesc:a4dcdf2da06261ceba9e2a2f1430a8e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de lire un suite de caractère manuscrit grâce à la caméra. La caméra fait un signe oui si l'équation inscrite est correcte et un signe non si elle ne l'est pas.  <a href="#a4dcdf2da06261ceba9e2a2f1430a8e55">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4dcdf2da06261ceba9e2a2f1430a8e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a719856b9b4c6e98628895724ea487b67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_8c.html#a719856b9b4c6e98628895724ea487b67">suprEspace</a> (char *Phrase, char *NewPhrase)</td></tr>
 <tr class="memdesc:a719856b9b4c6e98628895724ea487b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime les espaces d'une chaîne de caractères.  <a href="#a719856b9b4c6e98628895724ea487b67">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a719856b9b4c6e98628895724ea487b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,8 +115,8 @@ Fonctions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fonctions permettant de traiter une chaîne de caractères, de binariser un image, et de faire tourner le logiciel tesseract. </p>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a0a2abffedbccc733dc391bf9148cbb04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a2abffedbccc733dc391bf9148cbb04">&#9670;&nbsp;</a></span>deroule()</h2>
+<a id="a4dcdf2da06261ceba9e2a2f1430a8e55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dcdf2da06261ceba9e2a2f1430a8e55">&#9670;&nbsp;</a></span>deroule()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,8 +125,18 @@ Fonctions</h2></td></tr>
           <td class="memname">void deroule </td>
           <td>(</td>
           <td class="paramtype">IplImage *&#160;</td>
-          <td class="paramname"><em>image</em></td><td>)</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>arduino</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

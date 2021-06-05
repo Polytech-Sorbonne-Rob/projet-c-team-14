@@ -98,7 +98,7 @@ IplImage * traitement(IplImage * image){
 	IplImage* imhsv = cvCreateImage( cvGetSize(image),8,1 );
 	cvCvtColor(image,imhsv,CV_BGR2GRAY);
 	IplImage* noirblanc = cvCreateImage( cvGetSize(image),8,1 );
-	cvAdaptiveThreshold(imhsv,noirblanc,255,CV_ADAPTIVE_THRESH_GAUSSIAN_C,CV_THRESH_BINARY,21,11);
+	cvAdaptiveThreshold(imhsv,noirblanc,255,CV_ADAPTIVE_THRESH_GAUSSIAN_C,CV_THRESH_BINARY,21,13);
 	cvReleaseImage(&imhsv);
 	return noirblanc;
 

@@ -87,16 +87,17 @@ $(document).ready(function(){initNavTree('lecture_8c.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;lecture.h&quot;</code><br />
+<code>#include &quot;camera.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:aa7b2efb9aa77c5e4108177c0a9e6059d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture_8c.html#aa7b2efb9aa77c5e4108177c0a9e6059d">analyse</a> (char *chaine)</td></tr>
-<tr class="memdesc:aa7b2efb9aa77c5e4108177c0a9e6059d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de transformer une chaine de caractère en équation et de la résoudre la chaine de caractère doit contenir des entiers et un signe '='. Elle peut également contenir les symbole +,-,x.  <a href="#aa7b2efb9aa77c5e4108177c0a9e6059d">Plus de détails...</a><br /></td></tr>
-<tr class="separator:aa7b2efb9aa77c5e4108177c0a9e6059d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ef22f6878c173109d95b2389e647dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture_8c.html#ad3ef22f6878c173109d95b2389e647dc">analyse</a> (char *chaine, FILE *arduino)</td></tr>
+<tr class="memdesc:ad3ef22f6878c173109d95b2389e647dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de transformer une chaine de caractère en équation et de la résoudre; la chaine de caractère doit contenir des entiers et un signe '='. Elle peut également contenir les symbole +,-,x.  <a href="#ad3ef22f6878c173109d95b2389e647dc">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad3ef22f6878c173109d95b2389e647dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="aa7b2efb9aa77c5e4108177c0a9e6059d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7b2efb9aa77c5e4108177c0a9e6059d">&#9670;&nbsp;</a></span>analyse()</h2>
+<a id="ad3ef22f6878c173109d95b2389e647dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ef22f6878c173109d95b2389e647dc">&#9670;&nbsp;</a></span>analyse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -105,19 +106,30 @@ Fonctions</h2></td></tr>
           <td class="memname">void analyse </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>chaine</em></td><td>)</td>
+          <td class="paramname"><em>chaine</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>arduino</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Fonction permettant de transformer une chaine de caractère en équation et de la résoudre la chaine de caractère doit contenir des entiers et un signe '='. Elle peut également contenir les symbole +,-,x. </p>
-<p>Le principe de fonctionnement est le suivant: On crée deux listes pour chaque expression de part et d'autre du signe égal soit 4 listes en tout l'une contiendra les nombres de l'expression et l'autre les symboles des additionneurs On comble les liste par la valeur VAL_LIM_COMBLE</p>
-<p>on commence par cherche les signes 'x' pour la priorité des calculs on prends l'indice du signe x dans le deuxième tableau que l'on nomme "i", puis dans on multiplie les nombres d'indice i et i+1 du premier tableau on remplace alors le nombre d'indice i par le résultat obtenu et l'indice i+1 par une valeur limite (la plus grande valeur négative possible) pour le prochain calcul il suffit donc de décrémenter l'indice i ou d'incrémenter l'indice 'i+1' tant que l'on lit cette valeur limite</p>
-<p>ainsi 3*4+1*5 donne : [3,4,1,5] et [x,+,x] on fait 3*4 : [12,-val limite,1,5] on fait 1*5 [12,-val limite,5,-val limite] on fait val limite+5-&gt; on dcréente l'indice i -&gt; on fait 12+5 : [17,val limite, val limite,val limite] notre résultat se trouve donc toujours dans la première case du tableau</p>
+<p>Fonction permettant de transformer une chaine de caractère en équation et de la résoudre; la chaine de caractère doit contenir des entiers et un signe '='. Elle peut également contenir les symbole +,-,x. </p>
+<p>Le principe de fonctionnement est le suivant: On crée deux listes pour chaque expression de part et d'autre du signe égal soit 4 listes en tout, l'une contiendra les nombres de l'expression et l'autre les symboles des additionneurs. On comble les liste par la valeur VAL_LIM_COMBLE</p>
+<p>On commence par cherche les signes 'x' pour la priorité des calculs On prends l'indice du signe x dans le deuxième tableau que l'on nomme "i", puis on multiplie les nombres d'indice i et i+1 du premier tableau. On remplace alors le nombre d'indice i par le résultat obtenu et l'indice i+1 par une valeur limite (la plus grande valeur négative possible). Pour le prochain calcul, il suffit donc de décrémenter l'indice i ou d'incrémenter l'indice 'i+1' tant que l'on lit cette valeur limite.</p>
+<p>Ainsi 3*4+1*5 : Donne : [3,4,1,5] et [x,+,x] On fait 3*4 : [12,-val limite,1,5] On fait 1*5 [12,-val limite,5,-val limite] On fait val limite+5-&gt; on décrémente l'indice i -&gt; on fait 12+5 : [17,val limite, val limite,val limite]. Notre résultat se trouve donc toujours dans la première case du tableau.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">chaine</td><td>chaine de caractère à traiter. Doit contenir un "=". </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">chaine</td><td>Chaîne de caractères à traiter. Doit contenir un "=". </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">arduino</td><td>Lien vers la carte arduino. </td></tr>
   </table>
   </dd>
 </dl>
