@@ -18,7 +18,6 @@
         <header>
             <div class="accueil">
                 <h1>Projet C</h1>
-                <hr/>
                 <p>Traitement d'images avec OpenCV</p>
             </div>
         </header>
