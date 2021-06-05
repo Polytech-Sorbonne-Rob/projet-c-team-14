@@ -74,7 +74,11 @@ Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au cent
 - Appuyer sur la touche "enter"
 - vérifier sur la console si l'équation est celle attendue: si oui appuyer sur `a` si non appuyer sur `e` pour recommencer à partir de la deuxième étape
 
-La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon
+La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon.
+
+Il est aussi possible de forcer ce mouvement de tête en appuyant sur les touches:
+* 'y' pour oui
+* 'n' pour non
 
 
 ### Remerciements
