@@ -113,8 +113,7 @@ void analyse(char* chaine, FILE* arduino){
 		printf("erreur : pas de signe '=' dans l'équation");
 		exit(0);
 	}
-	
-	
+	listenbD[nb++]=nombre;
 	//DEBUG
 	/*printf("liste nbG : ");
 	for (long e=0;e<10;e++){
@@ -138,7 +137,7 @@ printf("liste addD : ");
 	printf("\n");
 */
 
-	listenbD[nb++]=nombre;
+	
 
 
 	// boucle des priorités (fois)
@@ -163,11 +162,11 @@ printf("liste addD : ");
 	while (listeaddD[i]!=-VAL_LIM_COMBLE){
 		if(listeaddD[i]=='x'){
 			long a=i;
-			while (a<0){
+			while (listenbD[a]==-VAL_LIM_REMP){
 				a--;
 			}
 			long b=i+1;
-			while (b<0) b++;
+			while (listenbD[b]==-VAL_LIM_REMP) b++;
 			//DEBUG
 			//printf("b= %ld on multiplie %ld et %ld\n",b,listenbD[a],listenbD[b]);
 			listenbD[a]=listenbD[a]*listenbD[b];
