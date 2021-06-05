@@ -28,7 +28,7 @@ Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du pr
 sudo apt-get install tesseract-ocr
 ```
 
-Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier foo.traineddata, qui se trouve dans le dossier extra, dans le chemin:
+Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier [foo.traineddata](./extra/foo.trainneddata), qui se trouve dans le dossier extra, dans le chemin:
 ```
 /usr/share/tesseract-ocr/4.00/tessdata/
 ```
@@ -71,7 +71,7 @@ Tout comme le projet imposé la caméra peut être déplacée avec les touches `
 Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au centre. Pour utiliser le programme, il faut:
 - écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise) de la forme `expr1=expr2`
 - placer l'équation entière dans le rectangle central 
-- appuyer sur la touche "enter"
+- appuyer sur la touche `enter`
 - vérifier sur la console si l'équation est celle attendue: si oui appuyer sur `a` si non appuyer sur `e` pour recommencer à partir de la deuxième étape
 
 La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon.
