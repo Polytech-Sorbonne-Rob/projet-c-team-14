@@ -93,36 +93,40 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <p>Pour accéder à la documentation, il faut ouvrir le fichier <code>html\index.html</code>.</p>
 <h2>Préparation</h2>
-<p>Dans un premier temps, assurez-vous d'avoir la bibliothèque <a href="https://docs.opencv.org/master/">OpenCV</a> qui suit ce chemin: </p><div class="fragment"><div class="line">/usr/include/opencv2</div></div><!-- fragment --><p>Afin d'utiliser le pan-tilt, il faut téléverser le <a href="./code_arduino/">programme arduino</a> sur la carte qui se situe dans le dossier code_arduino.</p>
+<p>Dans un premier temps, assurez-vous d'avoir la bibliothèque <a href="https://docs.opencv.org/master/">OpenCV</a> qui suit ce chemin: </p><div class="fragment"><div class="line">/usr/include/opencv2</div></div><!-- fragment --><p>Afin d'utiliser le pan-tilt, il faut téléverser le <a href="./code_arduino/">programme arduino</a> sur la carte qui se situe dans le dossier code_arduino. Une fois le programme téléverser assurer vous de tester son fonctionnement en écrivant dans le serial <code>90 90</code> par exemple. Puis pensez à mettre à jour l'addresse située dans le fichier main.c.</p>
 <p>Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du projet libre.</p>
-<div class="fragment"><div class="line">sudo apt-get install tesseract-ocr</div></div><!-- fragment --><p>Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier foo.traineddata, qui se trouve dans le dossier extra, dans le chemin: </p><div class="fragment"><div class="line">/usr/share/tesseract-ocr/4.00/tessdata/</div></div><!-- fragment --><p>Pour lancer le programme, il suffit de taper les commandes suivantes: </p><div class="fragment"><div class="line">make</div><div class="line"></div><div class="line">./main </div></div><!-- fragment --><p>Aucun paramètre d'entrée n'est nécessaire.</p>
+<div class="fragment"><div class="line">sudo apt-get install tesseract-ocr</div></div><!-- fragment --><p>Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier <a href="./extra/">foo.traineddata</a>, qui se trouve dans le dossier extra, dans le chemin: </p><div class="fragment"><div class="line">/usr/share/tesseract-ocr/4.00/tessdata/</div></div><!-- fragment --><p>Pour lancer le programme, il suffit de taper les commandes suivantes: </p><div class="fragment"><div class="line">git clone https://github.com/Polytech-Sorbonne-Rob/projet-c-team-14</div><div class="line"></div><div class="line">make</div><div class="line"></div><div class="line">./main </div></div><!-- fragment --><p>Aucun paramètre d'entrée n'est nécessaire.</p>
 <h2>Projet imposé</h2>
 <p>Le projet imposé consiste à réaliser le tracking d'une couleur avec l'utilisation d'une caméra pan-tilt et d'une carte arduino.</p>
 <p>Ce dernier autorise deux possibilités:</p><ul>
-<li>la première consiste à mouvoir la caméra en utilisant les touches "zqsd" tel des touches directionnelles.</li>
+<li>la première consiste à mouvoir la caméra en utilisant les touches <code>zqsd</code> tel des touches directionnelles.</li>
 <li>la seconde est le tracking du vert avec la caméra.</li>
 </ul>
 <p>Cette seconde possibilité possède aussi une trackbar qui permet à l'utilisateur de régler la plage de couleurs souhaitée de manière très précise.</p>
 <p>Afin d'accéder au projet imposé, il faut:</p><ul>
 <li>lancer le programme</li>
 <li>appuyer sur la touche <code>v</code></li>
-<li>puis appuyer sur la touche <code>m</code> pour intervertir entre le mode manuel et le mode tracking.</li>
+<li>puis appuyer sur la touche <code>m</code> pour intervertir entre le mode manuel et le mode tracking</li>
 </ul>
 <p>Afin de quitter le programme, il est nécessaire d'appuyer sur la touche <code>echap</code> du clavier.</p>
 <h2>Projet libre</h2>
-<p>Le projet libre consiste à déterminer si une équation présentée devant la caméra est juste ou fausse</p>
+<p>Le projet libre consiste à déterminer si une équation présentée devant la caméra est juste ou fausse.</p>
 <p>Afin d'accéder au projet libre, il faut:</p><ul>
 <li>lancer le programme</li>
 <li>appuyer sur la touche <code>b</code></li>
 </ul>
-<p>Tout comme le projet imposé la caméra peut être déplacée avec les touches "zqsd"</p>
+<p>Tout comme le projet imposé la caméra peut être déplacée avec les touches <code>zqsd</code>.</p>
 <p>Une fois que le mode est choisi, une fenêtre apparait avec un rectangle au centre. Pour utiliser le programme, il faut:</p><ul>
 <li>écrire l'équation voulue sur un fond blanc avec un gros marqueur (par exemple une ardoise) de la forme <code>expr1=expr2</code></li>
-<li>Placer l'équation entière dans le rectangle central</li>
-<li>Appuyer sur la touche "enter"</li>
+<li>placer l'équation entière dans le rectangle central</li>
+<li>appuyer sur la touche <code>enter</code></li>
 <li>vérifier sur la console si l'équation est celle attendue: si oui appuyer sur <code>a</code> si non appuyer sur <code>e</code> pour recommencer à partir de la deuxième étape</li>
 </ul>
-<p>La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon</p>
+<p>La caméra fera alors un hochement de tête si l'équation est juste et un signe "non" sinon.</p>
+<p>Il est aussi possible de forcer ce mouvement de tête en appuyant sur les touches:</p><ul>
+<li><code>y</code> pour oui</li>
+<li><code>n</code> pour non</li>
+</ul>
 <h3>Remerciements</h3>
 <p>Nous tenons particulièrement à remercier <b>M. Saint-Bauzel</b> et <b>M. Maurice</b> pour leur accompagnement tout au long de ce projet.</p>
 <p>Ainsi que les Gits suivant qui nous ont permis d'obtenir le css et le javascript de la documentation:</p><ul>

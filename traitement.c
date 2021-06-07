@@ -59,16 +59,19 @@ void deroule(IplImage * image, FILE * arduino){
 		int key;
 		//touche touche a ou e enfoncée
 		do{
-          printf("ok\n");
+          //printf("ok\n");
 			key=cvWaitKey(0);
-            printf("ou\n");
+            //printf("ou\n");
 		}while((key!=1048673) && (key!=1048677));
 
 		if(key==1048673){// touche a
           printf("Analyse...\n");
           analyse(sortie, arduino);
-
 		}
+
+        if(key==1048677){
+          printf("Appuyer sur entrée pour capturer.\n");
+        }
 
 		free(sortie);
 	}

@@ -99,11 +99,11 @@ void analyse(char* chaine, FILE* arduino){
 		}
 		//on augmente le chiffre à droite du nombre
 		else {
-			printf("chaine[i]%d\n",chaine[i]);
-			nombre*=10;
-			printf("nombre1 %ld\n",nombre);
-			nombre+=chaine[i]-48;
-			printf("nombre2 %ld\n",nombre);
+          //printf("chaine[i]%d\n",chaine[i]);
+          nombre*=10;
+          //printf("nombre1 %ld\n",nombre);
+          nombre+=chaine[i]-48;
+          //printf("nombre2 %ld\n",nombre);
 		}
 	i++;
 	}

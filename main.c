@@ -59,14 +59,14 @@ int main() {
   system("stty 9600"); // met le terminal en 9600 baud
   FILE *arduino = fopen("/dev/ttyACM0", "w"); // IL FAUT CONFIGURER CORRECTEMENT LA SORTIE ARDUINO
   if(arduino == NULL){
-    perror("ARDUINO OFF");
+    perror("ARDUINO OFF, verifiez le bon port de sortie");
     exit(0);
   }
 
-  // open the first webcam plugged in the computer
+  // ouvre la première caméra connecté
   CvCapture* capture=cvCaptureFromCAM(-1);
 
-  if(!capture)  //if no webcam detected or failed to capture anything
+  if(!capture)  //si impossible de capturer l'image
     {              // capture a frame
       perror("CAMERA OFF");
       exit(0);
@@ -74,11 +74,18 @@ int main() {
 
 
   bool control_kb = true;
-  int mode=2;
+  int mode = 1;
+  printf("Appuyer sur:\n\t-v pour accéder au projet imposé\n\t-b pour accéder au projet libre\n");
+  printf("Par défaut, le projet imposé se lance.\n\n");
+
+
   int q1 = 30;
   int q0 = 90;
   fprintf(arduino, "%d %d\n", q0, q1);
 
+  //uniquement la pour avertir l'utilisateur
+  printf("Mode manuel:\n");
+  printf("Appuyer sur les touches zqsd pour pouvoir mettre en mouvement le pan-tilt.\n\n");
 
   // BOUCLE CAPTURE
   while (1){
@@ -89,12 +96,12 @@ int main() {
 
     if(key == 1048694) {//  touche v
       mode=1;//TRACKING
-      printf("Projet imposé\n");
+      printf("Projet imposé:\n\n");
       cvDestroyAllWindows();
 	}
     if(key == 1048674){ //  touche b
       mode=2;//CALCUL
-      printf("Projet libre\n");
+      printf("Projet libre:\n\nAppuyer sur entrée pour capturer.\n");
       cvDestroyAllWindows();
 	}
 
@@ -133,8 +140,8 @@ int main() {
 
         cvCircle(frame,cvPoint(posX,posY),5,cvScalar(0,0,255),-1);
       }
-      cvFlip(frame, frame, 1);
-      cvFlip(img, img, 1);
+      //cvFlip(frame, frame, 1);
+      //cvFlip(img, img, 1);
 
       cvNamedWindow( "Image", CV_WINDOW_AUTOSIZE );
       cvMoveWindow("Image", 0, 0);
@@ -146,10 +153,14 @@ int main() {
       // TRACKING
       if(key ==1048685){ // touche m
         control_kb = !control_kb; // control clavier ou non
-        if(control_kb)
-          printf("Mode manuel\n");
-        else
-          printf("Mode tracking\n");
+        if(control_kb){
+          printf("Mode manuel:\n");
+          printf("Appuyer sur les touches zqsd pour pouvoir mettre en mouvement le pan-tilt.\n\n");
+        }
+        else{
+          printf("Mode tracking:\n");
+        printf("Vous pouvez régler la couleur du tracking à l'aide de la trackbar.\n(Par défaut, le tracking se fait sur une plage de verts.)\n\n");
+        }
       }
 
       // tracking manuel
