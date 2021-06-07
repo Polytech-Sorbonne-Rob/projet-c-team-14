@@ -35,7 +35,7 @@
 
                     <p>La principale difficulté que nous avons rencontrée a été de trouver toute la documentation d'OpenCV qui nous était alors inconnue. Il m'a été difficile d'assimiler le fonctionnement de la bibliothèque, cette dernière utilisant des classes différentes (pour capturer une image). La majorité des vidéos explicitant bien cette bibliothèque sont en python, mais ce dernier ne nécessite pas de déclarer ses variables au préalable. C'est donc à tâtons que l'assimilation de cette bibliothèque s'est faite. Nous avons aussi rencontré des difficultés pour actionner les moteurs de la caméra à l'aide de l'arduino. Malgré ces nombreux soucis, la première partie du projet a été réalisée dans les temps du planning qui nous avait été fourni, et non sans effort. </p>
                     
-                    <p>Le projet imposé pourrait encore être amélioré, par exemple en implémentant le choix de couleurs prédéfinies, en plus de la trackbar déjà présente qui est plus complexe à utiliser. Je suis tout de même très satisfait du résultat obtenu. Notre programme est réactif, intuitif à utiliser. </p>
+                    <p>De plus, j'ai aussi implémenté une commande permettant le déplacement du pan-tilt via des touches du clavier(ZQSD), qui suivent le modèle des touches directionnelles du clavier. Le projet imposé pourrait encore être amélioré, par exemple en implémentant le choix de couleurs prédéfinies, en plus de la trackbar déjà présente qui est plus complexe à utiliser. Je suis tout de même très satisfait du résultat obtenu. Notre programme est réactif, intuitif à utiliser. </p>
 
                     <h3>Projet libre : reconnaissance et résolution d'équation</h3>
 

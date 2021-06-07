@@ -93,10 +93,11 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <p>Pour accéder à la documentation, il faut ouvrir le fichier <code>html\index.html</code>.</p>
 <h2>Préparation</h2>
-<p>Dans un premier temps, assurez-vous d'avoir la bibliothèque <a href="https://docs.opencv.org/master/">OpenCV</a> qui suit ce chemin: </p><div class="fragment"><div class="line">/usr/include/opencv2</div></div><!-- fragment --><p>Afin d'utiliser le pan-tilt, il faut téléverser le <a href="./code_arduino/">programme arduino</a> sur la carte qui se situe dans le dossier code_arduino. Une fois le programme téléverser assurer vous de tester son fonctionnement en écrivant dans le serial <code>90 90</code> par exemple. Puis pensez à mettre à jour l'addresse située dans le fichier main.c.</p>
+<p>Dans un premier temps, il est nécessaire de télécharger le GIT en executant cette commande dans le terminal:</p>
+<div class="fragment"><div class="line">git clone https://github.com/Polytech-Sorbonne-Rob/projet-c-team-14</div></div><!-- fragment --><p>Puis assurez-vous d'avoir la bibliothèque <a href="https://docs.opencv.org/master/">OpenCV</a> qui suit ce chemin: </p><div class="fragment"><div class="line">/usr/include/opencv2</div></div><!-- fragment --><p>Afin d'utiliser le pan-tilt, il faut téléverser le <a href="./code_arduino/">programme arduino</a> sur la carte qui se situe dans le dossier code_arduino. Une fois le programme téléverser assurez-vous de tester son fonctionnement en écrivant dans le serial <code>90 90</code> par exemple. Puis pensez à mettre à jour l'addresse du port de l'arduino située dans le fichier main.c (/dev/ttyACM0 ou /dev/ttyUSB0 en général).</p>
+<p>Pour lancer le programme, il suffit de taper les commandes suivantes: </p><div class="fragment"><div class="line">make</div><div class="line"></div><div class="line">./main </div></div><!-- fragment --><p>Aucun paramètre d'entrée n'est nécessaire.</p>
 <p>Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du projet libre.</p>
-<div class="fragment"><div class="line">sudo apt-get install tesseract-ocr</div></div><!-- fragment --><p>Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier <a href="./extra/">foo.traineddata</a>, qui se trouve dans le dossier extra, dans le chemin: </p><div class="fragment"><div class="line">/usr/share/tesseract-ocr/4.00/tessdata/</div></div><!-- fragment --><p>Pour lancer le programme, il suffit de taper les commandes suivantes: </p><div class="fragment"><div class="line">git clone https://github.com/Polytech-Sorbonne-Rob/projet-c-team-14</div><div class="line"></div><div class="line">make</div><div class="line"></div><div class="line">./main </div></div><!-- fragment --><p>Aucun paramètre d'entrée n'est nécessaire.</p>
-<h2>Projet imposé</h2>
+<div class="fragment"><div class="line">sudo apt-get install tesseract-ocr</div></div><!-- fragment --><p>Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier <a href="./extra/">foo.traineddata</a>, qui se trouve dans le dossier extra, dans le chemin: </p><div class="fragment"><div class="line">/usr/share/tesseract-ocr/4.00/tessdata/</div></div><!-- fragment --><h2>Projet imposé</h2>
 <p>Le projet imposé consiste à réaliser le tracking d'une couleur avec l'utilisation d'une caméra pan-tilt et d'une carte arduino.</p>
 <p>Ce dernier autorise deux possibilités:</p><ul>
 <li>la première consiste à mouvoir la caméra en utilisant les touches <code>zqsd</code> tel des touches directionnelles.</li>
@@ -127,7 +128,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><code>y</code> pour oui</li>
 <li><code>n</code> pour non</li>
 </ul>
-<h3>Remerciements</h3>
+<h3>Erreur fréquente</h3>
+<p>Ce message risque d'apparaître dans le terminal à chaque exécution de Tesseract au sein du programme: </p><div class="fragment"><div class="line">Error: LSTM requested, but not present!! Loading tesseract.</div><div class="line">Failed loading language &#39;foo&#39;</div><div class="line">Tesseract Open Source OCR Engine v4.0.0-beta.1 with Leptonica</div><div class="line">Warning. Invalid resolution 0 dpi. Using 70 instead.</div></div><!-- fragment --><p> Ce dernier n'empêche pas le bon fonctionnement du programme.</p>
+<h2>Remerciements</h2>
 <p>Nous tenons particulièrement à remercier <b>M. Saint-Bauzel</b> et <b>M. Maurice</b> pour leur accompagnement tout au long de ce projet.</p>
 <p>Ainsi que les Gits suivant qui nous ont permis d'obtenir le css et le javascript de la documentation:</p><ul>
 <li><a href="https://github.com/jothepro/doxygen-awesome-css">jothepro</a></li>

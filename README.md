@@ -84,8 +84,17 @@ Il est aussi possible de forcer ce mouvement de tête en appuyant sur les touche
 * `y` pour oui
 * `n` pour non
 
+### Erreur fréquente
+Ce message risque d'apparaître dans le terminal à chaque exécution de Tesseract au sein du programme:
+```
+Error: LSTM requested, but not present!! Loading tesseract.
+Failed loading language 'foo'
+Tesseract Open Source OCR Engine v4.0.0-beta.1 with Leptonica
+Warning. Invalid resolution 0 dpi. Using 70 instead.
+```
+Ce dernier n'empêche pas le bon fonctionnement du programme.
 
-### Remerciements
+## Remerciements
 Nous tenons particulièrement à remercier **M. Saint-Bauzel** et **M. Maurice** pour leur accompagnement tout au long de ce projet.
 
 Ainsi que les Gits suivant qui nous ont permis d'obtenir le css et le javascript de la documentation:
