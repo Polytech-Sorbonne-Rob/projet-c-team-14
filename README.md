@@ -13,14 +13,27 @@ Les caractères lus sont :
 Pour accéder à la documentation, il faut ouvrir le fichier `html\index.html`.
 
 ## Préparation
+Dans un premier temps, il est nécessaire de télécharger le GIT en executant cette commande dans le terminal:
 
-Dans un premier temps, assurez-vous d'avoir la bibliothèque [OpenCV](https://docs.opencv.org/master/) qui suit ce chemin:
+```
+git clone https://github.com/Polytech-Sorbonne-Rob/projet-c-team-14
+```
+
+Puis assurez-vous d'avoir la bibliothèque [OpenCV](https://docs.opencv.org/master/) qui suit ce chemin:
 ```
 /usr/include/opencv2
 ```
 
-Afin d'utiliser le pan-tilt, il faut téléverser le [programme arduino](./code_arduino/) sur la carte qui se situe dans le dossier code_arduino. Une fois le programme téléverser assurer vous de tester son fonctionnement en écrivant dans le serial `90 90` par exemple. Puis pensez à mettre à jour l'addresse située dans le fichier main.c.
+Afin d'utiliser le pan-tilt, il faut téléverser le [programme arduino](./code_arduino/) sur la carte qui se situe dans le dossier code_arduino. Une fois le programme téléverser assurez-vous de tester son fonctionnement en écrivant dans le serial `90 90` par exemple. Puis pensez à mettre à jour l'addresse du port de l'arduino située dans le fichier main.c (/dev/ttyACM0 ou /dev/ttyUSB0 en général).
 
+Pour lancer le programme, il suffit de taper les commandes suivantes:
+```
+make
+
+./main 
+```
+
+Aucun paramètre d'entrée n'est nécessaire.
 
 Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du projet libre. 
 
@@ -32,17 +45,6 @@ Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il f
 ```
 /usr/share/tesseract-ocr/4.00/tessdata/
 ```
-
-Pour lancer le programme, il suffit de taper les commandes suivantes:
-```
-git clone https://github.com/Polytech-Sorbonne-Rob/projet-c-team-14
-
-make
-
-./main 
-```
-
-Aucun paramètre d'entrée n'est nécessaire.
 
 
 ## Projet imposé
