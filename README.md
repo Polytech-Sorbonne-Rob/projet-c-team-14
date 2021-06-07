@@ -19,7 +19,7 @@ Dans un premier temps, assurez-vous d'avoir la bibliothèque [OpenCV](https://do
 /usr/include/opencv2
 ```
 
-Afin d'utiliser le pan-tilt, il faut téléverser le [programme arduino](./code_arduino/) sur la carte qui se situe dans le dossier code_arduino.
+Afin d'utiliser le pan-tilt, il faut téléverser le [programme arduino](./code_arduino/) sur la carte qui se situe dans le dossier code_arduino. Une fois le programme téléverser assurer vous de tester son fonctionnement en écrivant dans le serial `90 90` par exemple. Puis pensez à mettre à jour l'addresse située dans le fichier main.c.
 
 
 Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du projet libre. 
@@ -28,13 +28,15 @@ Il est nécéssaire d'installer tesseract au préalable pour l'utilisation du pr
 sudo apt-get install tesseract-ocr
 ```
 
-Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier foo.traineddata, qui se trouve dans le dossier extra, dans le chemin:
+Afin d'installer la bibliothèque de reconnaissance d'écriture manuscrite, Il faut placer le fichier [foo.traineddata](./extra/), qui se trouve dans le dossier extra, dans le chemin:
 ```
 /usr/share/tesseract-ocr/4.00/tessdata/
 ```
 
 Pour lancer le programme, il suffit de taper les commandes suivantes:
 ```
+git clone https://github.com/Polytech-Sorbonne-Rob/projet-c-team-14
+
 make
 
 ./main 
