@@ -53,6 +53,8 @@
                     <br>	- J'ai ensuite songer à remplacer tous les chiffres déjà calculés dans la liste (ainsi [2x3x4] devenais [6,6,4] puis [24,24,24]) mais cela aurait ajouté une complexité suplémentaire et inutile.
                     <br>	-Enfin, je suis arrivé à la solution actuelle où j'ai dû règler quelques petits bugs mineurs comme la supression des espaces dans la chaine de caractères.</br></br></br>
                     </p>
+                    <p> Enfin, j'ai eu beauoup de mal à trouver comment rogner une image pour la faire lire correctement à Tesseract. J'ai dû chercher dans plusieurs forums pour trouver une solution ainsi que dans la documentation de OpenCV. Au final la solution est plutôt simple mais le temps de recherche a été pourtant conséquant.
+                    </p>
 
 
 
